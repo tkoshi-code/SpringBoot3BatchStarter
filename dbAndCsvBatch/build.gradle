@@ -1,0 +1,102 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'com.diffplug.spotless' version '6.22.0'
+    id 'nu.studer.jooq' version '9.0'
+    id 'java'
+    id 'project-report'
+}
+
+group = 'com.example.batch'
+version = '0.0.1-SNAPSHOT'
+description = 'SpringBatchDbAndCsv'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+// Spring Bootプラグインが管理するライブラリに対してバージョン番号を明示的に指定しない。
+// Do not explicitly specify version numbers for libraries managed by the Spring Boot plugin.
+// https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv'
+    implementation 'com.mysql:mysql-connector-j'
+
+    // jOOQ dependencies
+    implementation 'org.jooq:jooq'
+    jooqGenerator 'org.jooq:jooq-meta'
+    jooqGenerator 'org.jooq:jooq-codegen'
+    jooqGenerator 'com.mysql:mysql-connector-j'
+
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.batch:spring-batch-test'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// https://github.com/diffplug/spotless
+spotless {
+    java {
+        target project.fileTree(project.projectDir) {
+            include '**/*.java'
+            exclude '**/generated-src/**'
+            exclude '**/build/**'
+        }
+        googleJavaFormat()
+        trimTrailingWhitespace()
+        endWithNewline()
+        removeUnusedImports()
+    }
+}
+
+jooq {
+    configurations {
+        main { // 生成コードの設定
+            generationTool {
+                jdbc {
+                    driver = 'com.mysql.cj.jdbc.Driver'
+                    url = 'jdbc:mysql://localhost:3306/sampledb'
+                    user = 'sampleuser'
+                    password = 'samplepassword'
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    strategy {
+                        name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                    }
+                    database {
+                        name = 'org.jooq.meta.mysql.MySQLDatabase'
+                        inputSchema = 'sampledb' // スキーマ名を指定
+                    }
+                    target {
+                        packageName = 'com.example.batch.jooq' // 生成コードのパッケージ
+                        directory = "build/generated-src/jooq/main"// 生成先ディレクトリ
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.named('build') {
+    dependsOn 'generateJooq'
+}
+
+defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'projectReport', 'bootJar'
