@@ -42,7 +42,7 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 
 ## CSVファイルからDBに登録するバッチを起動  
 ## Run the batch job to import data from a CSV file into the database  
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
 
 ## for server  
 ## DBからCSVファイルを生成するバッチを起動  
@@ -51,5 +51,5 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 
 ## CSVファイルからDBに登録するバッチを起動  
 ## Run the batch job to import data from a CSV file into the database  
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=server
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=server
 ```
