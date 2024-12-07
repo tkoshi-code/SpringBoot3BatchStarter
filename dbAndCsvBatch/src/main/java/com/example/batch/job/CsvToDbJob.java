@@ -1,5 +1,6 @@
 package com.example.batch.job;
 
+import com.example.batch.config.BatchNotificationListener;
 import com.example.batch.logic.CsvToDbLogic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class CsvToDbJob {
 
   private final CsvToDbLogic logic;
+  private final BatchNotificationListener listener;
 
   /** 実行時引数で入力するジョブ名は、このstrJobNameと一致する必要がある */
   private static final String BATCH_JOB_NAME = "CSV_TO_DB";
 
   @Bean("CSV_TO_DB")
   public Job sample(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- START ----------- DbToCsvJob ----------- START -----------");
+    log.info("----------- START ----------- CsvToDbJob ----------- START -----------");
+
     Step myStep =
         new StepBuilder(BATCH_JOB_NAME + "-step", jobRepository)
             .tasklet(logic, transactionManager)
@@ -34,10 +37,11 @@ public class CsvToDbJob {
     Job myJob =
         new JobBuilder(BATCH_JOB_NAME, jobRepository)
             .incrementer(new RunIdIncrementer())
-            .listener(BATCH_JOB_NAME)
+            .listener(listener)
             .start(myStep)
             .build();
-    log.info("-----------  END  ----------- DbToCsvJob -----------  END  -----------");
+
+    log.info("-----------  END  ----------- CsvToDbJob -----------  END  -----------");
 
     return myJob;
   }

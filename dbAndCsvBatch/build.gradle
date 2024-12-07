@@ -24,23 +24,23 @@ repositories {
 // https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+    implementation "org.springframework.boot:spring-boot-starter-jooq"
+    implementation 'org.jooq:jooq'
     implementation 'org.apache.commons:commons-lang3'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv'
+    implementation 'com.opencsv:opencsv:5.8'
     implementation 'com.mysql:mysql-connector-j'
 
-    // jOOQ dependencies
-    implementation 'org.jooq:jooq'
-    jooqGenerator 'org.jooq:jooq-meta'
-    jooqGenerator 'org.jooq:jooq-codegen'
-    jooqGenerator 'com.mysql:mysql-connector-j'
-
     runtimeOnly 'com.h2database:h2'
+
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
+
+    jooqGenerator 'org.jooq:jooq-meta'
+    jooqGenerator 'org.jooq:jooq-codegen'
+    jooqGenerator 'com.mysql:mysql-connector-j'
 }
 
 tasks.withType(JavaCompile) {
@@ -56,7 +56,6 @@ spotless {
     java {
         target project.fileTree(project.projectDir) {
             include '**/*.java'
-            exclude '**/generated-src/**'
             exclude '**/build/**'
         }
         googleJavaFormat()
@@ -83,11 +82,11 @@ jooq {
                     }
                     database {
                         name = 'org.jooq.meta.mysql.MySQLDatabase'
-                        inputSchema = 'sampledb' // スキーマ名を指定
+                        inputSchema = 'sampledb'
                     }
                     target {
-                        packageName = 'com.example.batch.jooq' // 生成コードのパッケージ
-                        directory = "build/generated-src/jooq/main"// 生成先ディレクトリ
+                        packageName = 'com.example.batch.jooq'
+                        directory = "build/generated-src/jooq/main"
                     }
                 }
             }
@@ -95,8 +94,13 @@ jooq {
     }
 }
 
+compileJava {
+    dependsOn generateJooq
+    sourceSets.main.java.srcDirs("build/generated-src/jooq/main")
+}
+
 tasks.named('build') {
     dependsOn 'generateJooq'
 }
 
-defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'projectReport', 'bootJar'
+defaultTasks 'spotlessApply', 'clean', 'check', 'projectReport', 'bootJar'

@@ -1,5 +1,6 @@
 package com.example.batch.logic;
 
+import com.example.batch.enums.BatchResult;
 import com.example.batch.service.CsvToDbService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +20,22 @@ public class CsvToDbLogic implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
       throws Exception {
-
     log.info("----------- START ----------- CsvToDbLogic ----------- START -----------");
+
     try {
-      csvToDbService.execute();
+      BatchResult result = csvToDbService.execute();
+
+      if (result != BatchResult.SUCCESS) {
+        log.error("Batch process failed with result: {}", result);
+        contribution.setExitStatus(ExitStatus.FAILED);
+      } else {
+        log.info("Batch process completed successfully.");
+      }
     } catch (Exception e) {
+      log.error("An error occurred during batch processing", e);
       contribution.setExitStatus(ExitStatus.FAILED);
-      log.error("job failure", e);
     }
+
     log.info("-----------  END  ----------- CsvToDbLogic -----------  END  -----------");
 
     return RepeatStatus.FINISHED;
