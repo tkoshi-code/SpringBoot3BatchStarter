@@ -27,6 +27,10 @@ mysql> SELECT * FROM member WHERE delete_flag = 0 AND type IN (1, 2, 3);
 # Generate the JAR file by executing the default task after creating entity classes from the database  
 ../gradlew
 
+# EntityクラスがDBから自動生成された事を確認
+# Verify that the Entity classes were generated from the database
+ls -R build/generated-src/jooq
+
 # spring boot jarファイルが生成されていることを確認  
 # Verify that the Spring Boot JAR file has been generated  
 ls -ls build/libs/dbAndCsvBatch-*.jar

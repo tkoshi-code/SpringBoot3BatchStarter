@@ -22,7 +22,8 @@ This project provides sample batch jobs using Spring Batch and JOOQ to demonstra
 5.	OpenCSV for CSV file handling.
 6.	Profile-specific configurations for local and server environments.
 7.	Support for multiple batch jobs in a single JAR.
-8.	A skeleton structure (skeletonBatch) for rapid custom batch development.
+8.	Google Java Format for automatic code formatting using Spotless.
+9.	A skeleton structure (skeletonBatch) for rapid custom batch development.
 
 ## Key Features / 特徴 (日本語)
 1.	Spring Batch フレームワークを使用したジョブとステップ管理。
@@ -32,18 +33,19 @@ This project provides sample batch jobs using Spring Batch and JOOQ to demonstra
 5.	OpenCSV を使用したCSVファイル操作。
 6.	ローカル環境とサーバー環境をプロファイルごとに設定。
 7.	複数のバッチジョブを単一のJARファイルにまとめ、起動引数で特定のバッチジョブを選択可能。
-8.	カスタムバッチを迅速に開発するためのスケルトン構造 (skeletonBatch) を提供。
+8. 	Spotless を使用してJavaソースコードをGoogle Java Format に自動整形。
+9. 	カスタムバッチを迅速に開発するためのスケルトン構造 (skeletonBatch) を提供。
 
 ---
 
 ## Multi-Database Setup / マルチデータベース設定
 
 The application uses the following databases:
-1.	H2 in-memory database for Spring Batch metadata (e.g., job executions, step executions).
+1.	H2 in-memory database for Spring Batch metadata (e.g., job executions, step executions). Since it is an in-memory database, there’s no need to manually clean up the data after execution.
 2.	MySQL for handling business data.
 
 アプリケーションでは、次のデータベースを使用します:
-1.	H2インメモリデータベース をSpring Batchメタデータ管理用に使用 (例: ジョブ実行、ステップ実行)。
+1.	H2インメモリデータベース をSpring Batchメタデータ管理用に使用 (例: ジョブ実行、ステップ実行)。インメモリデータベースなので、実行後にデータを手動で削除する必要はありません。
 2.	MySQL を業務データ処理用に使用。
 
 ---
