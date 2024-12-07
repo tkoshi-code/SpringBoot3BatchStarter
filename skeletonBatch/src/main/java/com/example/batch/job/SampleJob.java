@@ -20,14 +20,12 @@ public class SampleJob {
 
   private final SampleLogic logic;
 
-  /**
-   * 実行時引数で入力するジョブ名は、この値と一致させる The job name provided as a runtime argument must match this value.
-   */
   private static final String BATCH_JOB_NAME = "sample";
 
   @Bean("sample")
   public Job sample(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- START ----------- SampleJob ----------- START -----------");
+    log.info("----------- START ----------- Registering SampleJob ----------- START -----------");
+
     Step myStep =
         new StepBuilder(BATCH_JOB_NAME + "-step", jobRepository)
             .tasklet(logic, transactionManager)
@@ -39,7 +37,8 @@ public class SampleJob {
             .listener(BATCH_JOB_NAME)
             .start(myStep)
             .build();
-    log.info("-----------  END  ----------- SampleJob -----------  END  -----------");
+
+    log.info("-----------  END  ----------- Registering SampleJob -----------  END  -----------");
 
     return myJob;
   }
