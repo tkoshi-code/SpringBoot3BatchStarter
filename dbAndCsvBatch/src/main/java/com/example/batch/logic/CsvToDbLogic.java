@@ -18,8 +18,7 @@ public class CsvToDbLogic implements Tasklet {
   private final CsvToDbService csvToDbService;
 
   @Override
-  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
-      throws Exception {
+  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
     log.info("----------- START ----------- CsvToDbLogic ----------- START -----------");
 
     try {

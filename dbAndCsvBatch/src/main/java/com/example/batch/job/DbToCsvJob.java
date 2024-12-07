@@ -24,7 +24,9 @@ public class DbToCsvJob {
 
   /**
    * バッチジョブの名前を定義。この名前は実行時引数で指定するジョブ名と一致する必要がある。
-   * <p>Defines the name of the batch job. This must match the job name provided in the runtime arguments.
+   *
+   * <p>Defines the name of the batch job. This must match the job name provided in the runtime
+   * arguments.
    */
   private static final String BATCH_JOB_NAME = "DB_TO_CSV";
 
