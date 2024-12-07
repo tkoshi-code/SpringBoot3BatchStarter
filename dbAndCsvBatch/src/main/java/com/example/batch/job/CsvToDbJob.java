@@ -22,12 +22,15 @@ public class CsvToDbJob {
   private final CsvToDbLogic logic;
   private final BatchNotificationListener listener;
 
-  /** 実行時引数で入力するジョブ名は、このstrJobNameと一致する必要がある */
+  /**
+   * バッチジョブの名前を定義。この名前は実行時引数で指定するジョブ名と一致する必要がある。
+   * <p>Defines the name of the batch job. This must match the job name provided in the runtime arguments.
+   */
   private static final String BATCH_JOB_NAME = "CSV_TO_DB";
 
   @Bean("CSV_TO_DB")
   public Job sample(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- START ----------- CsvToDbJob ----------- START -----------");
+    log.info("----------- START ----------- Registering CsvToDbJob ----------- START -----------");
 
     Step myStep =
         new StepBuilder(BATCH_JOB_NAME + "-step", jobRepository)
@@ -41,7 +44,7 @@ public class CsvToDbJob {
             .start(myStep)
             .build();
 
-    log.info("-----------  END  ----------- CsvToDbJob -----------  END  -----------");
+    log.info("-----------  END  ----------- Registering CsvToDbJob -----------  END  -----------");
 
     return myJob;
   }

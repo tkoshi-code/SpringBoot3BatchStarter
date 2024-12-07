@@ -6,22 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * バッチ処理の流れは job登録 -> logic -> service -> repository となっている。
- *
- * <p>実行時引数にジョブ名とプロファイルを設定して起動することで、バッチジョブを実行することができる。
- *
- * <p>[intelliJの実行時パラメーターの例]
- *
- * <p>--spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
- *
- * <p>[terminalからGradleで実行する例]
- *
- * <p># ./gradlew bootJar
- *
- * <p># java -jar build/libs/id-platform-batch-*.jar --spring.batch.job.name=DB_TO_CSV
- * --spring.profiles.active=local
- */
 @SpringBootApplication
 public class DbAndCsvBatchApp {
   private static final Logger log = LoggerFactory.getLogger(DbAndCsvBatchApp.class);

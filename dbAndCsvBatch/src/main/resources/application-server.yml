@@ -1,7 +1,6 @@
 spring:
-  batch:
-    datasource:
-      name: batchDataSource
+  main:
+    web-application-type: none
   datasource:
     # H2 (For Spring Batch management tables)
     batch:

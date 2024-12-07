@@ -21,7 +21,8 @@ This project provides sample batch jobs using Spring Batch and JOOQ to demonstra
 4.	H2 in-memory database for Spring Batch metadata management.
 5.	OpenCSV for CSV file handling.
 6.	Profile-specific configurations for local and server environments.
-7.	A skeleton structure (skeletonBatch) for rapid custom batch development.
+7.	Support for multiple batch jobs in a single JAR.
+8.	A skeleton structure (skeletonBatch) for rapid custom batch development.
 
 ## Key Features / 特徴 (日本語)
 1.	Spring Batch フレームワークを使用したジョブとステップ管理。
@@ -30,7 +31,8 @@ This project provides sample batch jobs using Spring Batch and JOOQ to demonstra
 4.	H2インメモリデータベース をSpring Batchメタデータ管理用に使用。
 5.	OpenCSV を使用したCSVファイル操作。
 6.	ローカル環境とサーバー環境をプロファイルごとに設定。
-7.	カスタムバッチを迅速に開発するためのスケルトン構造 (skeletonBatch) を提供。
+7.	複数のバッチジョブを単一のJARファイルにまとめ、起動引数で特定のバッチジョブを選択可能。
+8.	カスタムバッチを迅速に開発するためのスケルトン構造 (skeletonBatch) を提供。
 
 ---
 
