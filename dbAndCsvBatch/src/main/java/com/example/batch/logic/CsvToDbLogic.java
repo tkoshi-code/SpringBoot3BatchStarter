@@ -24,11 +24,11 @@ public class CsvToDbLogic implements Tasklet {
     try {
       BatchResult result = csvToDbService.execute();
 
-      if (result != BatchResult.SUCCESS) {
+      if (result == BatchResult.SUCCESS) {
+        log.info("Batch process completed successfully.");
+      } else {
         log.error("Batch process failed with result: {}", result);
         contribution.setExitStatus(ExitStatus.FAILED);
-      } else {
-        log.info("Batch process completed successfully.");
       }
     } catch (Exception e) {
       log.error("An error occurred during batch processing", e);

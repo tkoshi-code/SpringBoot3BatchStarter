@@ -20,7 +20,7 @@ public class MemberRepository {
 
     return dslContext
         .selectFrom(MEMBER)
-        .where(MEMBER.DELETE_FLAG.eq((byte) deleteFlag))
+        .where(MEMBER.DELETE_FLAG.eq(deleteFlag))
         .and(MEMBER.TYPE.in(types))
         .fetchInto(MemberRecord.class);
   }
