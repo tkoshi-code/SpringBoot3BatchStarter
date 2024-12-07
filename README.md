@@ -1,6 +1,6 @@
 Spring Batch Starter - DB to CSV and CSV to DB Example
 
-Overview / 概要
+# Overview / 概要
 
 This project provides sample batch jobs using Spring Batch and JOOQ to demonstrate:
 1.	A skeleton batch structure (skeletonBatch) for quickly implementing custom batch logic.
@@ -14,7 +14,7 @@ This project provides sample batch jobs using Spring Batch and JOOQ to demonstra
 
 ---
 
-Key Features / 特徴
+# Key Features / 特徴
 1.	Spring Batch framework for job and step management.
 2.	JOOQ for database interaction and entity generation, avoiding boilerplate SQL.
 3.	MySQL for business data operations.
@@ -23,7 +23,7 @@ Key Features / 特徴
 6.	Profile-specific configurations for local and server environments.
 7.	A skeleton structure (skeletonBatch) for rapid custom batch development.
 
-	
+# Key Features / 特徴 (日本語)
 1.	Spring Batch フレームワークを使用したジョブとステップ管理。
 2.	JOOQ を使用してエンティティ生成とデータベース操作を簡素化。
 3.	MySQL を業務データ操作用に使用。
