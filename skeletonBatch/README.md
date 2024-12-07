@@ -21,7 +21,6 @@ cd skeletonBatch
 # Verify that the Spring Boot JAR file has been generated  
 ls -ls build/libs/skeletonBatch-*.jar
 
-## for local  
 ## スケルトンのバッチを起動  
 ## Run the batch job to skeleton  
 java -jar build/libs/skeletonBatch-*.jar
