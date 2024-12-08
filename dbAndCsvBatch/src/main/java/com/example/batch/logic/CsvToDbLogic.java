@@ -22,7 +22,8 @@ public class CsvToDbLogic implements Tasklet {
     log.info("----------- START ----------- CsvToDbLogic ----------- START -----------");
 
     try {
-      BatchResult result = csvToDbService.execute();
+      String filePath = "members.csv";
+      BatchResult result = csvToDbService.execute(filePath);
 
       if (result == BatchResult.SUCCESS) {
         log.info("Batch process completed successfully.");

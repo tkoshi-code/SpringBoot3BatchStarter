@@ -1,0 +1,6 @@
+"id","type","name","email","phone","address","deleteFlag","createdAt","updatedAt"
+"1","1","John Doe","john.doe@example.com","1234567890","123 Main St, City, Country","0","2024-12-07T09:46:07","2024-12-07T09:46:07"
+"2","1","Jane Smith","jane.smith@example.com","0987654321","456 Oak St, Town, Country","0","2024-12-07T09:46:07","2024-12-07T09:46:07"
+"3","2","ABC Corp","contact@abccorp.com","5678901234","789 Pine St, Village, Country","0","2024-12-07T09:46:07","2024-12-07T09:46:07"
+"5","3","Alice Premium","alice.premium@example.com","4561237890","987 Maple St, City, Country","0","2024-12-07T09:46:07","2024-12-07T09:46:07"
+"6","3","Charlie Davis","charlie.davis@example.com","1112223333",,"0","2024-12-07T09:46:07","2024-12-07T09:46:07"

@@ -7,6 +7,12 @@ This module provides sample batch processing implementations for:
 2. Importing data from a CSV file into a database (CSV to DB).  
    CSVファイルからデータベースにデータを登録します (CSV to DB)。
 
+## Docker
+Note: If you cannot use Docker, please download and install Docker from Docker's official website.
+Follow the instructions provided for your operating system.
+
+注釈: Dockerコマンドが使用できない場合は、[Dockerの公式サイト](https://www.docker.com/get-started)からダウンロードしてインストールしてください。
+
 ## How to Run / 実行方法
 ```bash
 cd dbAndCsvBatch

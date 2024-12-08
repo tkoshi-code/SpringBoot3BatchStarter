@@ -4,6 +4,8 @@ plugins {
     id 'com.diffplug.spotless' version '6.22.0'
     id 'java'
     id 'project-report'
+    id 'idea'
+    id 'eclipse'
 }
 
 group = 'com.example.batch'

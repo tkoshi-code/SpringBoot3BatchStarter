@@ -5,6 +5,9 @@ plugins {
     id 'nu.studer.jooq' version '9.0'
     id 'java'
     id 'project-report'
+    id 'jacoco'
+    id 'idea'
+    id 'eclipse'
 }
 
 group = 'com.example.batch'
@@ -37,6 +40,12 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation 'org.assertj:assertj-core'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     jooqGenerator 'org.jooq:jooq-meta'
     jooqGenerator 'org.jooq:jooq-codegen'
@@ -67,7 +76,7 @@ spotless {
 
 jooq {
     configurations {
-        main { // 生成コードの設定
+        main {
             generationTool {
                 jdbc {
                     driver = 'com.mysql.cj.jdbc.Driver'
@@ -103,4 +112,4 @@ tasks.named('build') {
     dependsOn 'generateJooq'
 }
 
-defaultTasks 'spotlessApply', 'clean', 'check', 'projectReport', 'bootJar'
+defaultTasks 'spotlessApply', 'clean', 'check', 'jacocoTestReport', 'projectReport', 'bootJar'

@@ -5,6 +5,8 @@ import com.example.batch.jooq.tables.records.MemberRecord;
 import com.example.batch.repository.MemberRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +27,11 @@ public class CsvToDbService {
    *
    * <p>Reads data from a CSV file and inserts it into the database.
    */
-  public BatchResult execute() throws Exception {
-    log.info("----------- START ----------- CsvToDbService ----------- START -----------");
+  public BatchResult execute(String csvFilePath) throws Exception {
+    log.info(
+        "----------- START ----------- CsvToDbService {} ----------- START -----------",
+        csvFilePath);
 
-    String csvFilePath = "members.csv";
     try {
       List<MemberRecord> memberRecords = loadCsvData(csvFilePath);
 
@@ -54,6 +57,12 @@ public class CsvToDbService {
 
   private List<MemberRecord> loadCsvData(String csvFilePath)
       throws IOException, CsvValidationException {
+    File csvFile = new File(csvFilePath);
+    if (!csvFile.exists()) {
+      log.error("CSV file does not exist at path: {}", csvFilePath);
+      throw new FileNotFoundException(csvFilePath);
+    }
+
     List<MemberRecord> memberRecords = new ArrayList<>();
     try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
       // Skip the header row

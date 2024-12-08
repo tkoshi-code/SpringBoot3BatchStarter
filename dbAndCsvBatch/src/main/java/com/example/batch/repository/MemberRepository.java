@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class MemberRepository {
   private final DSLContext dslContext;
 
-  public List<MemberRecord> findByType(List<Integer> types, Byte deleteFlag) {
+  public List<MemberRecord> findByType(List<Byte> types, Byte deleteFlag) {
     log.info("Fetching members with types = {}", types);
 
     return dslContext

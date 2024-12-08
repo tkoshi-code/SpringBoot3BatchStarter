@@ -26,7 +26,7 @@ public class DbToCsvService {
   public BatchResult execute() throws Exception {
     log.info("----------- START ----------- DbToCsvService ----------- START -----------");
 
-    List<Integer> types =
+    List<Byte> types =
         List.of(
             MemberType.INDIVIDUAL.getValue(),
             MemberType.BUSINESS.getValue(),
