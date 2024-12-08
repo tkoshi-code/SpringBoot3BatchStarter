@@ -13,7 +13,7 @@ public class DbAndCsvBatchApp {
   public static void main(String[] args) {
     logOnlyBatchDetails();
 
-    System.exit(SpringApplication.exit(SpringApplication.run(DbAndCsvBatchApp.class, args)));
+    SpringApplication.run(DbAndCsvBatchApp.class, args);
   }
 
   /**

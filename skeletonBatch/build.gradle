@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.6'
     id 'com.diffplug.spotless' version '6.22.0'
     id 'java'
+    id 'jacoco'
     id 'project-report'
     id 'idea'
     id 'eclipse'
@@ -26,7 +27,6 @@ repositories {
 // https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.apache.commons:commons-lang3'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
@@ -43,6 +43,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+// https://github.com/diffplug/spotless
 spotless {
     java {
         googleJavaFormat()
@@ -56,4 +57,4 @@ jar {
     enabled = true
 }
 
-defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'projectReport', 'bootJar'
+defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'jacocoTestReport', 'projectReport', 'bootJar'
