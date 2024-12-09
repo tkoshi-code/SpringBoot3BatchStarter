@@ -18,7 +18,7 @@ public class SampleService {
             + System.lineSeparator()
             + "***                     ここにバッチの業務ロジックを記述する !!!                          ***"
             + System.lineSeparator()
-            + "***               Business logic for the batch process goes here!                   ***"
+            + "***                     Write your batch business logic here!                       ***"
             + System.lineSeparator()
             + "***************************************************************************************"
             + System.lineSeparator().repeat(3));

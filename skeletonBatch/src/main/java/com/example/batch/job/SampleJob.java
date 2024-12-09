@@ -27,9 +27,11 @@ public class SampleJob {
     log.info("Registering job: {}", BATCH_NAME);
 
     Step myStep =
-        new StepBuilder(BATCH_NAME, jobRepository).tasklet(logic, transactionManager).build();
+        new StepBuilder(BATCH_NAME + "-step", jobRepository)
+            .tasklet(logic, transactionManager)
+            .build();
 
-    Job myJob = new JobBuilder(BATCH_NAME, jobRepository).start(myStep).build();
+    Job myJob = new JobBuilder(BATCH_NAME + "-job", jobRepository).start(myStep).build();
 
     log.info("Job registered successfully: {} ", myJob.getName());
 

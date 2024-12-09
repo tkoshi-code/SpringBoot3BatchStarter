@@ -35,7 +35,7 @@ public class CsvToDbJob {
     log.info("Registering job: {}", BATCH_NAME);
 
     Job myJob =
-        new JobBuilder(BATCH_NAME, jobRepository)
+        new JobBuilder(BATCH_NAME + "-job", jobRepository)
             .incrementer(new RunIdIncrementer())
             .listener(listener)
             .start(
