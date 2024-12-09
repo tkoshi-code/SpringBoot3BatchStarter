@@ -5,7 +5,6 @@ import com.example.batch.logic.CsvToDbLogic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
@@ -28,25 +27,24 @@ public class CsvToDbJob {
    * <p>Defines the name of the batch job. This must match the job name provided in the runtime
    * arguments.
    */
-  private static final String BATCH_JOB_NAME = "CSV_TO_DB";
+  private static final String BATCH_NAME = "CSV_TO_DB";
 
-  @Bean("CSV_TO_DB")
-  public Job sample(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- START ----------- Registering CsvToDbJob ----------- START -----------");
-
-    Step myStep =
-        new StepBuilder(BATCH_JOB_NAME + "-step", jobRepository)
-            .tasklet(logic, transactionManager)
-            .build();
+  @Bean
+  public Job createCsvToDbJob(
+      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    log.info("Registering job: {}", BATCH_NAME);
 
     Job myJob =
-        new JobBuilder(BATCH_JOB_NAME, jobRepository)
+        new JobBuilder(BATCH_NAME, jobRepository)
             .incrementer(new RunIdIncrementer())
             .listener(listener)
-            .start(myStep)
+            .start(
+                new StepBuilder(BATCH_NAME + "-step", jobRepository)
+                    .tasklet(logic, transactionManager)
+                    .build())
             .build();
 
-    log.info("-----------  END  ----------- Registering CsvToDbJob -----------  END  -----------");
+    log.info("Job registered successfully: {} ", myJob.getName());
 
     return myJob;
   }

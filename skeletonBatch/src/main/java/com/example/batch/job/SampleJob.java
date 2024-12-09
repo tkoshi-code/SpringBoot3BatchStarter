@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,25 +19,19 @@ public class SampleJob {
 
   private final SampleLogic logic;
 
-  private static final String BATCH_JOB_NAME = "sample";
+  private static final String BATCH_NAME = "sample";
 
-  @Bean("sample")
-  public Job sample(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- START ----------- Registering SampleJob ----------- START -----------");
+  @Bean
+  public Job createSampleJob(
+      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    log.info("Registering job: {}", BATCH_NAME);
 
     Step myStep =
-        new StepBuilder(BATCH_JOB_NAME + "-step", jobRepository)
-            .tasklet(logic, transactionManager)
-            .build();
+        new StepBuilder(BATCH_NAME, jobRepository).tasklet(logic, transactionManager).build();
 
-    Job myJob =
-        new JobBuilder(BATCH_JOB_NAME, jobRepository)
-            .incrementer(new RunIdIncrementer())
-            .listener(BATCH_JOB_NAME)
-            .start(myStep)
-            .build();
+    Job myJob = new JobBuilder(BATCH_NAME, jobRepository).start(myStep).build();
 
-    log.info("-----------  END  ----------- Registering SampleJob -----------  END  -----------");
+    log.info("Job registered successfully: {} ", myJob.getName());
 
     return myJob;
   }

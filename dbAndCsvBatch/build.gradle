@@ -74,6 +74,7 @@ spotless {
     }
 }
 
+// https://www.jooq.org/doc/latest/manual/code-generation/codegen-gradle/
 jooq {
     configurations {
         main {
@@ -85,10 +86,6 @@ jooq {
                     password = 'samplepassword'
                 }
                 generator {
-                    name = 'org.jooq.codegen.DefaultGenerator'
-                    strategy {
-                        name = 'org.jooq.codegen.DefaultGeneratorStrategy'
-                    }
                     database {
                         name = 'org.jooq.meta.mysql.MySQLDatabase'
                         inputSchema = 'sampledb'

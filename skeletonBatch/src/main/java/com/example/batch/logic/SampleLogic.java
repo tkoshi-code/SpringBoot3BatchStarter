@@ -3,7 +3,6 @@ package com.example.batch.logic;
 import com.example.batch.service.SampleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -24,8 +23,8 @@ public class SampleLogic implements Tasklet {
     try {
       sampleService.execute();
     } catch (Exception e) {
-      contribution.setExitStatus(ExitStatus.FAILED);
-      log.error("job failure", e);
+      log.error("Job failure", e);
+      throw e;
     }
     log.info("-----------  END  ----------- SampleLogic -----------  END  -----------");
 
