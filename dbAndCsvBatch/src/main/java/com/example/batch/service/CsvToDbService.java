@@ -28,9 +28,6 @@ public class CsvToDbService {
    * <p>Reads data from a CSV file and inserts it into the database.
    */
   public BatchResult execute(String csvFilePath) throws Exception {
-    log.info(
-        "----------- START ----------- CsvToDbService {} ----------- START -----------",
-        csvFilePath);
 
     try {
       List<MemberRecord> memberRecords = loadCsvData(csvFilePath);
@@ -51,7 +48,6 @@ public class CsvToDbService {
       throw e;
     }
 
-    log.info("-----------  END  ----------- CsvToDbService -----------  END  -----------");
     return BatchResult.SUCCESS;
   }
 

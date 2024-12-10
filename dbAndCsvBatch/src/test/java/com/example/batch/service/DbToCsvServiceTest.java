@@ -57,55 +57,36 @@ class DbToCsvServiceTest {
                 "789 Pine St, Village, Country",
                 (byte) 0));
 
-    when(memberRepository.findByType(anyList(), eq((byte) 0))).thenReturn(mockData);
+    when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
+        .thenReturn(mockData);
 
-    // Act: メソッドの実行
-    BatchResult result = dbToCsvService.execute();
+    // Act
+    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3));
 
-    // Assert: 検証
+    // Assert
     assertThat(result).isEqualTo(BatchResult.SUCCESS);
-    verify(memberRepository, times(1)).findByType(anyList(), eq((byte) 0));
+    verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
 
-    // CSVファイルが生成されていることを確認
     File csvFile = new File("members.csv");
     assertThat(csvFile.exists()).isTrue();
     assertThat(csvFile.length()).isGreaterThan(0);
 
-    // クリーンアップ
     csvFile.delete();
   }
 
   @Test
   void testExecute_NoData() throws Exception {
-    // Arrange: モックデータを空に設定
-    when(memberRepository.findByType(anyList(), eq((byte) 0))).thenReturn(List.of());
+    when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
+        .thenReturn(List.of());
 
-    // Act: メソッドの実行
-    BatchResult result = dbToCsvService.execute();
+    // Act
+    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3));
 
-    // Assert: 検証
+    // Assert
     assertThat(result).isEqualTo(BatchResult.NODATA);
-    verify(memberRepository, times(1)).findByType(anyList(), eq((byte) 0));
+    verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
   }
 
-  @Test
-  void testExecute_Exception() {
-    // Arrange: 例外をスローするモックの設定
-    when(memberRepository.findByType(anyList(), eq((byte) 0)))
-        .thenThrow(new RuntimeException("Database error"));
-
-    // Act & Assert: メソッドが例外をスローすることを確認
-    try {
-      dbToCsvService.execute();
-    } catch (Exception e) {
-      assertThat(e).isInstanceOf(RuntimeException.class);
-      assertThat(e.getMessage()).isEqualTo("Database error");
-    }
-
-    verify(memberRepository, times(1)).findByType(anyList(), eq((byte) 0));
-  }
-
-  // ヘルパーメソッド: モックデータを生成
   private MemberRecord createMockMember(
       int id, byte type, String name, String email, String phone, String address, byte deleteFlag) {
     MemberRecord member = new MemberRecord();

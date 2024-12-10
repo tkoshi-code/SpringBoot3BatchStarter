@@ -15,13 +15,14 @@ import org.springframework.stereotype.Repository;
 public class MemberRepository {
   private final DSLContext dslContext;
 
-  public List<MemberRecord> findByType(List<Byte> types, Byte deleteFlag) {
+  public List<MemberRecord> findMembersByTypeAndDeleteFlag(List<Byte> types, Byte deleteFlag) {
     log.info("Fetching members with types = {}", types);
 
     return dslContext
         .selectFrom(MEMBER)
         .where(MEMBER.DELETE_FLAG.eq(deleteFlag))
         .and(MEMBER.TYPE.in(types))
+        .orderBy(MEMBER.TYPE)
         .fetchInto(MemberRecord.class);
   }
 

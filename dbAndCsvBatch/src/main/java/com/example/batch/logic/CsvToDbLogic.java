@@ -19,7 +19,6 @@ public class CsvToDbLogic implements Tasklet {
 
   @Override
   public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
-    log.info("----------- START ----------- CsvToDbLogic ----------- START -----------");
 
     try {
       String filePath = "members.csv";
@@ -35,8 +34,6 @@ public class CsvToDbLogic implements Tasklet {
       log.error("An error occurred during batch processing", e);
       contribution.setExitStatus(ExitStatus.FAILED);
     }
-
-    log.info("-----------  END  ----------- CsvToDbLogic -----------  END  -----------");
 
     return RepeatStatus.FINISHED;
   }

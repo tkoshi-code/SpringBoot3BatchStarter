@@ -1,7 +1,6 @@
 package com.example.batch.service;
 
 import com.example.batch.enums.BatchResult;
-import com.example.batch.enums.MemberType;
 import com.example.batch.jooq.tables.records.MemberRecord;
 import com.example.batch.repository.MemberRepository;
 import com.opencsv.CSVWriter;
@@ -23,16 +22,11 @@ public class DbToCsvService {
    *
    * <p>Retrieve data from the database and export it to a CSV file.
    */
-  public BatchResult execute() throws Exception {
-    log.info("----------- START ----------- DbToCsvService ----------- START -----------");
+  public BatchResult execute(List<Byte> types) throws Exception {
 
-    List<Byte> types =
-        List.of(
-            MemberType.INDIVIDUAL.getValue(),
-            MemberType.BUSINESS.getValue(),
-            MemberType.PREMIUM.getValue());
     byte deleteFlag = 0;
-    List<MemberRecord> memberEntityList = memberRepository.findByType(types, deleteFlag);
+    List<MemberRecord> memberEntityList =
+        memberRepository.findMembersByTypeAndDeleteFlag(types, deleteFlag);
 
     if (!memberEntityList.isEmpty()) {
       String csvFileName = "members.csv";
@@ -42,7 +36,6 @@ public class DbToCsvService {
       return BatchResult.NODATA;
     }
 
-    log.info("-----------  END  ----------- DbToCsvService -----------  END  -----------");
     return BatchResult.SUCCESS;
   }
 

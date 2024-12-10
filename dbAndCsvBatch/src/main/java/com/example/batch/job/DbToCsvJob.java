@@ -21,12 +21,6 @@ public class DbToCsvJob {
   private final DbToCsvLogic logic;
   private final BatchNotificationListener listener;
 
-  /**
-   * バッチジョブの名前を定義。この名前は実行時引数で指定するジョブ名と一致する必要がある。
-   *
-   * <p>Defines the name of the batch job. This must match the job name provided in the runtime
-   * arguments.
-   */
   private static final String BATCH_NAME = "DB_TO_CSV";
 
   @Bean
@@ -35,7 +29,7 @@ public class DbToCsvJob {
     log.info("Registering job: {}", BATCH_NAME);
 
     Job myJob =
-        new JobBuilder(BATCH_NAME + "-job", jobRepository)
+        new JobBuilder(BATCH_NAME, jobRepository)
             .incrementer(new RunIdIncrementer())
             .listener(listener)
             .start(

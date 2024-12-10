@@ -41,14 +41,21 @@ ls -R build/generated-src/jooq
 # Verify that the Spring Boot JAR file has been generated  
 ls -ls build/libs/dbAndCsvBatch-*.jar
 
+
 ## for local  
 ## DBからCSVファイルを生成するバッチを起動  
 ## Run the batch job to generate a CSV file from the database  
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
 
+## 実行時引数を指定してバッチを起動する場合
+## When invoking a batch with runtime arguments
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --batch.types=2,4 --spring.profiles.active=local
+
 ## CSVファイルからDBに登録するバッチを起動  
 ## Run the batch job to import data from a CSV file into the database  
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+
+---- 
 
 ## for server  
 ## DBからCSVファイルを生成するバッチを起動  

@@ -15,3 +15,6 @@ spring:
       username: sampleuser
       password: samplepassword
       driver-class-name: com.mysql.cj.jdbc.Driver
+
+batch:
+  types: "1,2,3"
