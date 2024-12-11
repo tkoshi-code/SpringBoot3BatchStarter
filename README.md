@@ -1,56 +1,44 @@
-# Spring Batch Starter - DB to CSV and CSV to DB Example
+# Spring Batch Starter - Accelerate Your Batch Development
 
 ## Overview / 概要
 
-This project provides sample batch jobs using Spring Batch and JOOQ to demonstrate:
-1.	A skeleton batch structure (skeletonBatch) for quickly implementing custom batch logic.
-2.	Exporting data from a database to a CSV file (DB to CSV).
-3.	Importing data from a CSV file into a database (CSV to DB).
+This repository is a **comprehensive Spring Batch Starter Kit** designed to simplify batch job development using **Spring Batch** and **JOOQ**. Whether you’re a beginner or an experienced developer, this project provides everything you need to quickly implement and execute batch jobs.
 
-このプロジェクトでは、Spring Batch と JOOQ を使用して以下のバッチ処理のサンプルコードを提供します:
-1.	業務ロジックを記述するだけで簡単にバッチを構築できるスケルトン (skeletonBatch) を提供します。
-2.	データベースからCSVファイルを生成する (DB to CSV)。
-3.	CSVファイルからデータベースにデータを登録する (CSV to DB)。
+### Key Highlights
+- **Skeleton Batch Framework**: Quickly develop custom batch jobs with minimal setup.
+- **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly.
+- **CSV to DB Batch**: Import CSV data into MySQL efficiently.
 
----
+このリポジトリは、**Spring Batch** と **JOOQ** を活用したバッチ処理のスターターキットです。  
+バッチ開発初心者から経験豊富なエンジニアまで、誰もが迅速にバッチジョブを作成して実行できるように設計されています。
 
-## Key Features / 特徴
-1.	Spring Batch framework for job and step management.
-2.	JOOQ for database interaction and entity generation, avoiding boilerplate SQL.
-3.	MySQL for business data operations.
-4.	H2 in-memory database for Spring Batch metadata management.
-5.	OpenCSV for CSV file handling.
-6.	Profile-specific configurations for local and server environments.
-7.	Support for multiple batch jobs in a single JAR.
-8.	Google Java Format for automatic code formatting using Spotless.
-9.	A skeleton structure (skeletonBatch) for rapid custom batch development.
-
-## Key Features / 特徴 (日本語)
-1.	Spring Batch フレームワークを使用したジョブとステップ管理。
-2.	JOOQ を使用してエンティティ生成とデータベース操作を簡素化。
-3.	MySQL を業務データ操作用に使用。
-4.	H2インメモリデータベース をSpring Batchメタデータ管理用に使用。
-5.	OpenCSV を使用したCSVファイル操作。
-6.	ローカル環境とサーバー環境をプロファイルごとに設定。
-7.	複数のバッチジョブを単一のJARファイルにまとめ、起動引数で特定のバッチジョブを選択可能。
-8. 	Spotless を使用してJavaソースコードをGoogle Java Format に自動整形。
-9. 	カスタムバッチを迅速に開発するためのスケルトン構造 (skeletonBatch) を提供。
+### 主な特徴
+- **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築可能。
+- **DB to CSVバッチ**: MySQLからCSVファイルへのデータ出力をサポート。
+- **CSV to DBバッチ**: CSVデータをMySQLに効率的に登録可能。
 
 ---
 
-## Multi-Database Setup / マルチデータベース設定
+## 💡 Key Features / 特徴
 
-The application uses the following databases:
-1.	H2 in-memory database for Spring Batch metadata (e.g., job executions, step executions). Since it is an in-memory database, there’s no need to manually clean up the data after execution.
-2.	MySQL for handling business data.
+### 🚀 Batch Development Made Simple
+- **Spring Batch Framework**: Streamlined job and step management.
+- **JOOQ ORM**: SQL-like query writing and entity generation, eliminating boilerplate code.
+- **OpenCSV Integration**: Hassle-free CSV file handling.
+- **Multi-Database Support**: H2 for metadata management and MySQL for business data.
 
-アプリケーションでは、次のデータベースを使用します:
-1.	H2インメモリデータベース をSpring Batchメタデータ管理用に使用 (例: ジョブ実行、ステップ実行)。インメモリデータベースなので、実行後にデータを手動で削除する必要はありません。
-2.	MySQL を業務データ処理用に使用。
+### ⚙️ Flexibility and Optimization
+- **Dynamic Configurations**: Environment-specific setups with profiles (local/server).
+- **Customizable Batches**: Execute multiple jobs within a single JAR by passing runtime arguments.
+- **Google Java Format**: Automated code formatting with Spotless.
+
+### 💼 Future-Proof Design
+- **Skeleton Batch Framework**: A template for creating new batch jobs.
+- **Pre-configured Docker Environment**: Quickly set up a local MySQL database with Docker Compose.
 
 ---
 
-## Project Structure / プロジェクト構成
+## 🗂️ Project Structure / プロジェクト構成
 ```plaintext
 .
 ├── dbAndCsvBatch       # DB to CSV and CSV to DB batch jobs
@@ -66,3 +54,47 @@ The application uses the following databases:
     │   └── test
     ├── build.gradle    # Gradle configuration for skeletonBatch module
     └── README.md       # Detailed documentation for skeletonBatch
+```
+
+## 🚀 Getting Started / はじめに
+Prerequisites
+•	Java 17+ for Spring Boot 3.
+•	Docker for setting up the MySQL environment.
+•	Gradle for building and running the project.
+
+### 1.	Clone the repository
+```shell
+git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
+```
+
+### 2. Build the skeleton batch
+```shell
+cd skeletonBatch
+../gradlew
+```
+
+### 3. Run the skeleton batch
+```shell
+java -jar build/libs/skeletonBatch-*.jar
+```
+
+### 4. Set up the MySQL database for DB and CSV batch
+```shell
+cd ../dbAndCsvBatch
+docker compose up -d
+```
+### 5. Build the DB and CSV batch jobs
+```shell
+cd ../dbAndCsvBatch
+../gradlew
+```
+
+### 6. Run Db to CSV Batch
+```shell
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
+```
+
+### 7. Run CSV to DB Batch
+```shell
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+```
