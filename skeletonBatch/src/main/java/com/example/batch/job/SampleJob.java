@@ -24,7 +24,7 @@ public class SampleJob {
   @Bean
   public Job createSampleJob(
       JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("Registering job: {}", BATCH_NAME);
+    log.info("----------- Registering job: {} -----------", BATCH_NAME);
 
     Step myStep =
         new StepBuilder(BATCH_NAME + "-step", jobRepository)
@@ -33,8 +33,7 @@ public class SampleJob {
 
     Job myJob = new JobBuilder(BATCH_NAME + "-job", jobRepository).start(myStep).build();
 
-    log.info("Job registered successfully: {} ", myJob.getName());
-
+    log.info("----------- Job registered successfully: {} -----------", myJob.getName());
     return myJob;
   }
 }

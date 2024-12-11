@@ -1,6 +1,6 @@
 package com.example.batch.job;
 
-import com.example.batch.config.BatchNotificationListener;
+import com.example.batch.job.listener.BatchNotificationListener;
 import com.example.batch.logic.DbToCsvLogic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

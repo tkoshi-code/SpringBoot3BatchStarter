@@ -28,7 +28,7 @@ class CsvToDbServiceTest {
 
   @Mock private MemberRepository memberRepository;
 
-  @TempDir Path tempDir; // JUnitが一時ディレクトリを提供
+  @TempDir Path tempDir;
 
   private File tempCsvFile;
 
@@ -37,11 +37,9 @@ class CsvToDbServiceTest {
     tempCsvFile = tempDir.resolve("members.csv").toFile();
     log.info("Temporary CSV file created at: {}", tempCsvFile.getAbsolutePath());
 
-    // テスト用のCSVファイルを作成
     try (FileWriter fileWriter = new FileWriter(tempCsvFile);
         CSVWriter csvWriter = new CSVWriter(fileWriter)) {
 
-      // ヘッダー行を追加
       csvWriter.writeNext(
           new String[] {
             "id",
@@ -55,7 +53,6 @@ class CsvToDbServiceTest {
             "updatedAt"
           });
 
-      // データ行を追加
       csvWriter.writeNext(
           new String[] {
             "1",
@@ -74,17 +71,14 @@ class CsvToDbServiceTest {
 
   @Test
   void testExecuteSuccess() throws Exception {
-    // テスト実行
     BatchResult result = csvToDbService.execute(tempCsvFile.getAbsolutePath());
 
-    // 検証
     assertThat(result).isEqualTo(BatchResult.SUCCESS);
     Mockito.verify(memberRepository, Mockito.times(1)).bulkInsert(Mockito.anyList());
   }
 
   @Test
   void testExecuteNoData() throws Exception {
-    // 空のCSVファイルを作成
     File emptyCsvFile = tempDir.resolve("empty.csv").toFile();
     try (FileWriter fileWriter = new FileWriter(emptyCsvFile);
         CSVWriter csvWriter = new CSVWriter(fileWriter)) {
@@ -99,13 +93,11 @@ class CsvToDbServiceTest {
             "deleteFlag",
             "createdAt",
             "updatedAt"
-          }); // ヘッダーのみ
+          });
     }
 
-    // テスト実行
     BatchResult result = csvToDbService.execute(emptyCsvFile.getAbsolutePath());
 
-    // 検証
     assertThat(result).isEqualTo(BatchResult.NODATA);
     Mockito.verify(memberRepository, Mockito.never()).bulkInsert(Mockito.anyList());
   }

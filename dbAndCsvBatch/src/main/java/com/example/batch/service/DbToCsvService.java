@@ -18,19 +18,18 @@ public class DbToCsvService {
   private final MemberRepository memberRepository;
 
   /**
-   * データベースからデータを取得してCSVに出力する
+   * DBのレコードをCSVに出力する
    *
    * <p>Retrieve data from the database and export it to a CSV file.
    */
-  public BatchResult execute(List<Byte> types) throws Exception {
+  public BatchResult execute(List<Byte> types, String filePath) throws Exception {
 
     byte deleteFlag = 0;
     List<MemberRecord> memberEntityList =
         memberRepository.findMembersByTypeAndDeleteFlag(types, deleteFlag);
 
     if (!memberEntityList.isEmpty()) {
-      String csvFileName = "members.csv";
-      writeCsv(memberEntityList, csvFileName);
+      writeCsv(memberEntityList, filePath);
     } else {
       log.warn("No data found matching the criteria.");
       return BatchResult.NODATA;
@@ -39,25 +38,32 @@ public class DbToCsvService {
     return BatchResult.SUCCESS;
   }
 
-  private void writeCsv(List<MemberRecord> members, String filePath) throws IOException {
+  private void writeCsv(List<MemberRecord> records, String filePath) throws IOException {
     try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
-      String[] header = {
-        "id", "type", "name", "email", "phone", "address", "deleteFlag", "createdAt", "updatedAt"
-      };
-      writer.writeNext(header);
-
-      for (MemberRecord member : members) {
+      writer.writeNext(
+          new String[] {
+            "id",
+            "type",
+            "name",
+            "email",
+            "phone",
+            "address",
+            "deleteFlag",
+            "createdAt",
+            "updatedAt"
+          });
+      for (MemberRecord record : records) {
         writer.writeNext(
             new String[] {
-              String.valueOf(member.getId()),
-              String.valueOf(member.getType()),
-              member.getName(),
-              member.getEmail(),
-              member.getPhone(),
-              member.getAddress(),
-              String.valueOf(member.getDeleteFlag()),
-              String.valueOf(member.getCreatedAt()),
-              String.valueOf(member.getUpdatedAt())
+              String.valueOf(record.getId()),
+              String.valueOf(record.getType()),
+              record.getName(),
+              record.getEmail(),
+              record.getPhone(),
+              record.getAddress(),
+              String.valueOf(record.getDeleteFlag()),
+              String.valueOf(record.getCreatedAt()),
+              String.valueOf(record.getUpdatedAt())
             });
       }
     }

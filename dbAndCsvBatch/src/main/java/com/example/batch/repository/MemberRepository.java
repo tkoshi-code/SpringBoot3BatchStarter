@@ -9,15 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 @Repository
 public class MemberRepository {
   private final DSLContext dslContext;
 
   public List<MemberRecord> findMembersByTypeAndDeleteFlag(List<Byte> types, Byte deleteFlag) {
-    log.info("Fetching members with types = {}", types);
-
     return dslContext
         .selectFrom(MEMBER)
         .where(MEMBER.DELETE_FLAG.eq(deleteFlag))

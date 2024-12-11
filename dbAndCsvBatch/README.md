@@ -25,9 +25,11 @@ docker compose down && docker compose build && docker compose up -d
 ## Connect to the MySQL container and check tables and records  
 docker exec -it mysql-container mysql -u sampleuser -psamplepassword sampledb
 
+mysql> show databases;
 mysql> show tables;  
 mysql> SELECT * FROM member;  
-mysql> SELECT * FROM member WHERE delete_flag = 0 AND type IN (1, 2, 3);
+mysql> SELECT * FROM member WHERE delete_flag = 0 AND type IN (1, 2, 3) ORDER BY type ASC;
+mysql> exit;
 
 # DBからEntityクラスを生成した後に実行可能JARを作成するように、default taskを設定している  
 # Generate the JAR file by executing the default task after creating entity classes from the database  

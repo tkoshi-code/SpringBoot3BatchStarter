@@ -23,7 +23,7 @@ public class CsvToDbService {
   private final MemberRepository memberRepository;
 
   /**
-   * CSVを読み取って、データベースに流し込む
+   * CSVを読み取って、DBに流し込む
    *
    * <p>Reads data from a CSV file and inserts it into the database.
    */
@@ -61,14 +61,12 @@ public class CsvToDbService {
 
     List<MemberRecord> memberRecords = new ArrayList<>();
     try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-      // Skip the header row
       String[] header = reader.readNext();
       if (header == null) {
         log.warn("The CSV file is empty. Processing will be terminated.");
         return memberRecords;
       }
 
-      // Map data rows to MemberRecord objects
       String[] line;
       while ((line = reader.readNext()) != null) {
         MemberRecord memberRecord = new MemberRecord();

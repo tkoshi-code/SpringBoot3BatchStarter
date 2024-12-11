@@ -11,17 +11,13 @@ public class DbAndCsvBatchApp {
   private static final Logger log = LoggerFactory.getLogger(DbAndCsvBatchApp.class);
 
   public static void main(String[] args) {
-    logOnlyBatchDetails();
+    logBatchStartupDetails();
 
     SpringApplication.run(DbAndCsvBatchApp.class, args);
   }
 
-  /**
-   * バッチの起動引数をログ出力して確認できるようにする
-   *
-   * <p>Logs the batch startup arguments for verification.
-   */
-  private static void logOnlyBatchDetails() {
+  /** Log startup arguments */
+  private static void logBatchStartupDetails() {
     String commandProp = System.getProperty("sun.java.command");
     log.info(
         "##### KEY:\"sun.java.command\", VALUE:\"{}\"", System.getProperty("sun.java.command"));

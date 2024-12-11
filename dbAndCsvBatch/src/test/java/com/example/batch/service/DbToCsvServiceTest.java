@@ -27,9 +27,10 @@ class DbToCsvServiceTest {
     MockitoAnnotations.openMocks(this);
   }
 
+  String filePath = "members.csv";
+
   @Test
   void testExecute_Success() throws Exception {
-    // Arrange: モックデータの準備
     List<MemberRecord> mockData =
         List.of(
             createMockMember(
@@ -60,10 +61,8 @@ class DbToCsvServiceTest {
     when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
         .thenReturn(mockData);
 
-    // Act
-    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3));
+    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3), filePath);
 
-    // Assert
     assertThat(result).isEqualTo(BatchResult.SUCCESS);
     verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
 
@@ -79,10 +78,8 @@ class DbToCsvServiceTest {
     when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
         .thenReturn(List.of());
 
-    // Act
-    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3));
+    BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3), filePath);
 
-    // Assert
     assertThat(result).isEqualTo(BatchResult.NODATA);
     verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
   }

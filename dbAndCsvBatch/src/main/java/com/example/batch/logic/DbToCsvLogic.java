@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class DbToCsvLogic implements Tasklet {
   private final DbToCsvService dbToCsvService;
 
-  @Value("${batch.types:1,2,3}")
+  @Value("${batch.types:2,3,4}")
   private String typesConfig;
 
   @Override
@@ -30,8 +30,8 @@ public class DbToCsvLogic implements Tasklet {
       // 起動引数からリストに変換
       // Convert the `batch.types` command-line argument into a list of Byte values
       List<Byte> types = Arrays.stream(typesConfig.split(",")).map(Byte::valueOf).toList();
-
-      BatchResult result = dbToCsvService.execute(types);
+      String filePath = "members.csv";
+      BatchResult result = dbToCsvService.execute(types, filePath);
 
       if (result == BatchResult.SUCCESS) {
         log.info("Batch process completed successfully.");
