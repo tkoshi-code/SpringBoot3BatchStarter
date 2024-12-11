@@ -58,9 +58,9 @@ This repository is a **comprehensive Spring Batch Starter Kit** designed to simp
 
 ## 🚀 Getting Started / はじめに
 Prerequisites
-•	Java 17+ for Spring Boot 3.
-•	Docker for setting up the MySQL environment.
-•	Gradle for building and running the project.
+- Java 17+ for Spring Boot 3.
+- Docker for setting up the MySQL environment.
+- Gradle for building and running the project.
 
 ### 1.	Clone the repository
 ```shell
