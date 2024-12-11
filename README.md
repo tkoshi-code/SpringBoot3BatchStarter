@@ -1,21 +1,21 @@
-# Spring Batch Starter - Accelerate Your Batch Development
+# Spring Batch3 Starter - Accelerate Your Spring Boot 3 Batch Development🚀
 
 ## Overview / 概要
 
-This repository is a **comprehensive Spring Batch Starter Kit** designed to simplify batch job development using **Spring Batch** and **JOOQ**. Whether you’re a beginner or an experienced developer, this project provides everything you need to quickly implement and execute batch jobs.
+This repository is a Spring Batch Starter Kit tailored for Spring Boot 3. It simplifies batch job development with the latest Spring Batch 5 features, ensuring compatibility with Spring Boot 3. Whether you’re upgrading from Spring Boot 2 or starting fresh, this project equips you to leverage the enhanced capabilities of Spring Batch.
+
+このリポジトリは Spring Boot 3 および Spring Batch 5 の最新機能を活用して、バッチ処理の開発を効率化するためのスターターキットです。
+Spring Boot 2からの移行、または新規開発において、最新のバッチ処理フレームワークをすぐに使い始めることができます。
 
 ### Key Highlights
 - **Skeleton Batch Framework**: Quickly develop custom batch jobs with minimal setup.
 - **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly.
 - **CSV to DB Batch**: Import CSV data into MySQL efficiently.
 
-このリポジトリは、**Spring Batch** と **JOOQ** を活用したバッチ処理のスターターキットです。  
-バッチ開発初心者から経験豊富なエンジニアまで、誰もが迅速にバッチジョブを作成して実行できるように設計されています。
-
 ### 主な特徴
 - **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築可能。
-- **DB to CSVバッチ**: MySQLからCSVファイルへのデータ出力をサポート。
-- **CSV to DBバッチ**: CSVデータをMySQLに効率的に登録可能。
+- **DB to CSVバッチ**: MySQLからCSVファイルへのデータ出力します。where句を実行時引数で指定可能。
+- **CSV to DBバッチ**: CSVデータをMySQLにバルクで登録します。
 
 ---
 
@@ -57,10 +57,9 @@ This repository is a **comprehensive Spring Batch Starter Kit** designed to simp
 ```
 
 ## 🚀 Getting Started / はじめに
-Prerequisites
+### Prerequisites
 - Java 17+ for Spring Boot 3.
 - Docker for setting up the MySQL environment.
-- Gradle for building and running the project.
 
 ### 1.	Clone the repository
 ```shell
@@ -98,3 +97,5 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 ```shell
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
 ```
+
+#### With this Spring Batch Starter Kit, you can focus on your business logic while the framework handles the heavy lifting. Happy coding! 🎉
