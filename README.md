@@ -179,25 +179,3 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 ```
 
 #### With this Spring Batch Starter Kit, you can focus on your business logic while the framework handles the heavy lifting. Happy coding! 🎉
-```bash
-cd ../dbAndCsvBatch
-docker compose up -d
-```
-
-### 5. Build the DB and CSV batch jobs
-```bash
-cd ../dbAndCsvBatch
-../gradlew
-```
-
-### 6. Run Db to CSV Batch
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
-```
-
-### 7. Run CSV to DB Batch
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
-```
-
-#### With this Spring Batch Starter Kit, you can focus on your business logic while the framework handles the heavy lifting. Happy coding! 🎉
