@@ -20,6 +20,7 @@ jobs:
           MYSQL_DATABASE: sampledb
           MYSQL_USER: sampleuser
           MYSQL_PASSWORD: samplepassword
+          MYSQL_INITDB_SKIP_TZINFO: 1
 
     steps:
       - name: Checkout repository
@@ -33,7 +34,11 @@ jobs:
 
       - name: Wait for MySQL to be ready
         run: |
-          until mysqladmin ping -h mysql -u sampleuser -p"samplepassword" --silent; do
+          for i in {1..30}; do
+            if mysqladmin ping -h mysql -P 3306 -u sampleuser -p"samplepassword" --silent; then
+              echo "MySQL is ready!"
+              break
+            fi
             echo "Waiting for MySQL to be ready..."
             sleep 2
           done
@@ -44,9 +49,12 @@ jobs:
       - name: Run JaCoCo Test Report
         run: ./gradlew jacocoTestReport
 
-      - name: Upload JaCoCo Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/test/html
-          
+      - name: Run Skeleton Batch
+        run: ./gradlew skeletonBatch:bootRun
+
+      - name: Run dbAndCsvBatch (DB to CSV)
+        run: ./gradlew dbAndCsvBatch:bootRun --args="--spring.profiles.active=local --spring.batch.job.name=DB_TO_CSV"
+
+      - name: Run dbAndCsvBatch (CSV to DB)
+        run: ./gradlew dbAndCsvBatch:bootRun --args="--spring.profiles.active=local --spring.batch.job.name=CSV_TO_DB"
+
