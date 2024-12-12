@@ -9,8 +9,9 @@ This module provides practical batch processing samples for:
    CSVファイルからデータベースにデータを登録します (CSV to DB)。
 
 ## 🐳 Docker Setup
-If Docker is not available, download it from the official Docker website. Follow the installation instructions for your operating system.
-注記: Dockerが使用できない場合は、Dockerの公式サイトからダウンロードし、手順に従ってインストールしてください。
+If Docker is not available, download it from the [official Docker website](https://www.docker.com/get-started). Follow the installation instructions for your operating system.
+
+注釈: Dockerコマンドが使用できない場合は、[Dockerの公式サイト](https://www.docker.com/get-started)からダウンロードしてインストールしてください。
 
 ## How to Run / 実行方法
 Steps:
