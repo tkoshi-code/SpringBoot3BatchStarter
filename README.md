@@ -80,7 +80,7 @@ java -jar build/libs/skeletonBatch-*.jar
 ### 4. Set up the MySQL database for DB and CSV batch
 ```bash
 cd ../dbAndCsvBatch
-docker compose up -d     # Detailed documentation for skeletonBatch
+docker compose up -d
 ```
 
 ### 5. Build the DB and CSV batch jobs
