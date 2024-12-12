@@ -162,6 +162,7 @@ java -jar build/libs/skeletonBatch-*.jar
 cd ../dbAndCsvBatch
 docker compose up -d
 ```
+
 ### 5. Build the DB and CSV batch jobs
 ```bash
 cd ../dbAndCsvBatch
