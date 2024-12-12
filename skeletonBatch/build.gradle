@@ -58,3 +58,4 @@ jar {
 }
 
 defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'jacocoTestReport', 'spotbugsMain', 'projectReport', 'bootJar'
+

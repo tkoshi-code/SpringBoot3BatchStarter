@@ -29,3 +29,4 @@ java -jar build/libs/skeletonBatch-*.jar
 - Simple Setup: Pre-configured tasks for quick builds.
 - Fast Execution: Minimal effort to start your batch job.
 - Customizable: Extend the template with your business logic.
+

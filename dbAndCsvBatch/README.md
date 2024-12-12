@@ -86,3 +86,4 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=server
 ```
 With this module, you can seamlessly integrate database and CSV operations into your Spring Boot batch applications. Happy coding! 🎉
+
