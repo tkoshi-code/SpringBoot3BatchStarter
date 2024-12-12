@@ -44,19 +44,24 @@ Spring Boot 2からの移行、または新規開発において、最新のバ�
 ## 🗂️ Project Structure / プロジェクト構成
 ```bash
 .
-├── dbAndCsvBatch       # DB to CSV and CSV to DB batch jobs
-│   ├── src
-│   │   ├── main
-│   │   └── test
-│   ├── build.gradle    # Gradle configuration for dbAndCsvBatch module
-│   ├── compose.yaml    # Docker Compose file for MySQL container
-│   └── init-scripts    # SQL scripts to initialize the database
-└── skeletonBatch       # A skeleton batch example for future extensions
-    ├── src
-    │   ├── main
-    │   └── test
-    ├── build.gradle    # Gradle configuration for skeletonBatch module
-    └── README.md       # Detailed documentation for skeletonBatch
+├── compose.yaml
+├── dbAndCsvBatch
+│   ├── README.md
+│   ├── build.gradle
+│   └── src
+│       ├── main
+│       └── test
+├── gradlew
+├── init-scripts
+│   ├── 1-create-table.sql
+│   └── 2-insert-data.sql
+└── skeletonBatch
+    ├── README.md
+    ├── build.gradle
+    └── src
+        ├── main
+        └── test
+
 ```
 
 ## 🚀 Getting Started / はじめに
@@ -82,7 +87,6 @@ java -jar build/libs/skeletonBatch-*.jar
 
 ### 4. Set up the MySQL database for DB and CSV batch
 ```bash
-cd ../dbAndCsvBatch
 docker compose up -d
 ```
 

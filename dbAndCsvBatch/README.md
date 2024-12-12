@@ -15,9 +15,9 @@ If Docker is not available, download it from the [official Docker website](https
 
 ## How to Run / 実行方法
 Steps:
-1. Navigate to the dbAndCsvBatch directory:
+1. Navigate to the SpringBoot3BatchStarter directory:
 ```bash
-cd dbAndCsvBatch
+cd SpringBoot3BatchStarter
 ```
  
 2. Build and run the MySQL container:
@@ -45,6 +45,7 @@ Step-by-Step Guide
 1. Generate the JAR file
 Execute the default task to generate the Spring Boot JAR file:
 ```bash
+cd dbAndCsvBatch
 ../gradlew
 ```
 	
