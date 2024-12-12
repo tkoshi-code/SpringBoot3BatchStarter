@@ -37,13 +37,13 @@ jobs:
 
       - name: Wait for MySQL to be ready
         run: |
-          for i in {1..30}; do
+          for i in {1..60}; do
             if mysqladmin ping -h mysql -P 3306 -u sampleuser -p"samplepassword" --silent; then
               echo "MySQL is ready!"
               break
             fi
             echo "Waiting for MySQL to be ready..."
-            sleep 2
+            sleep 5  # Adjusted waiting time
           done
 
       - name: Build with Gradle
@@ -60,4 +60,3 @@ jobs:
 
       - name: Run dbAndCsvBatch (CSV to DB)
         run: ./gradlew dbAndCsvBatch:bootRun --args="--spring.profiles.active=local --spring.batch.job.name=CSV_TO_DB"
-

@@ -13,9 +13,10 @@ services:
       - ./init-scripts:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 20s  # 健康チェック間隔を20秒に延長
+      timeout: 10s  # タイムアウトを10秒に設定
+      retries: 10  # リトライ回数を10回に設定
+      start_period: 60s  # コンテナ起動からの待機時間を追加
     restart: always
 networks:
   default:
