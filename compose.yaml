@@ -1,9 +1,7 @@
-version: "3.8"
-
 services:
   mysql:
     image: mysql:latest
-    container_name: mysql-container
+    container_name: mysql-container-dev
     ports:
       - "3306:3306"
     environment:
@@ -19,3 +17,6 @@ services:
       timeout: 5s
       retries: 5
     restart: always
+networks:
+  default:
+    name: springboot3batchstarter_default

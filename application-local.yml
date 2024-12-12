@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://localhost:3306/sampledb
     username: sampleuser
     password: samplepassword
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  batch:
+    job:
+      names: DB_TO_CSV
