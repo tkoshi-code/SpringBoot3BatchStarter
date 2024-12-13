@@ -9,19 +9,18 @@ Spring Batch3 Starter - Accelerate Your Spring Boot 3 Batch Development🚀
 
 ## Overview / 概要
 
-This repository is a Spring Batch Starter Kit tailored for Spring Boot 3. It simplifies batch job development with the latest Spring Batch 5 features, ensuring compatibility with Spring Boot 3. Whether you’re upgrading from Spring Boot 2 or starting fresh, this project equips you to leverage the enhanced capabilities of Spring Batch.
+This repository serves as a Spring Batch Starter Kit, specifically tailored for Spring Boot 3 and Spring Batch 5. It streamlines batch job development by leveraging the latest features and ensuring full compatibility with Spring Boot 3. Whether you’re upgrading from Spring Boot 2 or starting a new project, this starter kit enables you to harness the enhanced capabilities of Spring Batch with ease.
 
-このリポジトリは Spring Boot 3 および Spring Batch 5 の最新機能を活用して、バッチ処理の開発を効率化するためのスターターキットです。
-Spring Boot 2からの移行、または新規開発において、最新のバッチ処理フレームワークをすぐに使い始めることができます。
+このリポジトリは、Spring Boot 3 と Spring Batch 5 の最新機能を活用して、バッチ処理開発を効率化するためのスターターキットです。動作する事が保証されたテンプレート上に業務ロジックを追加するだけで、簡単にバッチ処理を構築できます。Spring Boot 2 からの移行や新規プロジェクトにおいて、すぐに最新のバッチフレームワークを活用できます。
 
 ### Key Highlights
 - **Skeleton Batch Framework**: Quickly develop custom batch jobs with minimal setup.
-- **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly.
-- **CSV to DB Batch**: Import CSV data into MySQL efficiently.
+- **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly, with runtime arguments for dynamic WHERE clauses and flexible output configurations.
+- **CSV to DB Batch**: Import CSV data into MySQL efficiently with bulk operations and error handling.
 
 ### 主な特徴
-- **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築可能。
-- **DB to CSVバッチ**: MySQLからCSVファイルへのデータ出力します。where句を実行時引数で指定可能。
+- **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築する事が可能です。
+- **DB to CSVバッチ**: MySQLからCSVファイルへデータを出力します。where句を実行時引数で指定する事が可能です。
 - **CSV to DBバッチ**: CSVデータをMySQLにバルクで登録します。
 
 ---
