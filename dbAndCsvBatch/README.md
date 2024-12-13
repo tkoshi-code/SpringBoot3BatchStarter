@@ -15,17 +15,12 @@ If Docker is not available, download it from the [official Docker website](https
 
 ## How to Run / 実行方法
 Steps:
-1. Navigate to the SpringBoot3BatchStarter directory:
-```bash
-cd SpringBoot3BatchStarter
-```
- 
-2. Build and run the MySQL container:
+1. Build and run the MySQL container:
 ```bash
 docker compose down && docker compose build && docker compose up -d
 ```
 
-3. Connect to the MySQL container and verify the setup:
+2. Connect to the MySQL container and verify the setup:
 ```bash
 docker exec -it mysql-container mysql -u sampleuser -psamplepassword sampledb
 
@@ -76,6 +71,7 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --bat
 ```bash
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
 ```
+
 
 ### For Server Environment
 - Export data from DB to CSV:
