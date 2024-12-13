@@ -1,6 +1,8 @@
 Spring Batch3 Starter - Accelerate Your Spring Boot 3 Batch Development🚀
 =============================
 # SpringBoot3BatchStarter
+[![Github](https://img.shields.io/github/stars/KTC-YoheiMiyashita/SpringBoot3BatchStarter?logo=github&style=flat)](https://github.com/KTC-YoheiMiyashita/SpringBoot3BatchStarter)
+
 [![Build Status](https://github.com/KTC-YoheiMiyashita/SpringBoot3BatchStarter/actions/workflows/build.yml/badge.svg)](https://github.com/KTC-YoheiMiyashita/SpringBoot3BatchStarter/actions/workflows/build.yml)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
