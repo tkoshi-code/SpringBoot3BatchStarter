@@ -46,20 +46,20 @@ Spring Boot 2からの移行、または新規開発において、最新のバ�
 ---
 
 ## 🗂️ Project Structure / プロジェクト構成
-```bash
+```text
 .
 ├── gradlew
 ├── settings.gradle
 ├── compose.yaml
 ├── init-scripts
-│   ├── 1-create-table.sql
-│   └── 2-insert-data.sql
+│   ├── 1-create-table.sql
+│   └── 2-insert-data.sql
 ├── dbAndCsvBatch
-│   ├── README.md
-│   ├── build.gradle
-│   └── src
-│       ├── main
-│       └── test
+│   ├── README.md
+│   ├── build.gradle
+│   └── src
+│       ├── main
+│       └── test
 └── skeletonBatch
     ├── README.md
     ├── build.gradle
