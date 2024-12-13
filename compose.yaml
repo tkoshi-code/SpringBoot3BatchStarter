@@ -1,23 +1,12 @@
+version: '3'
 services:
   mysql:
     image: mysql:latest
-    container_name: mysql-container-dev
     ports:
-      - "3306:3306"
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: sampledb
       MYSQL_USER: sampleuser
       MYSQL_PASSWORD: samplepassword
-    volumes:
-      - ./init-scripts:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
-      interval: 20s  # 健康チェック間隔を20秒に延長
-      timeout: 10s  # タイムアウトを10秒に設定
-      retries: 10  # リトライ回数を10回に設定
-      start_period: 60s  # コンテナ起動からの待機時間を追加
-    restart: always
-networks:
-  default:
-    name: springboot3batchstarter_default
+      MYSQL_INITDB_SKIP_TZINFO: 1

@@ -1,0 +1,27 @@
+name: Build and Test Skeleton Batch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build Skeleton Batch with Gradle
+        run: ./gradlew :skeletonBatch:build
+
+      - name: Run Skeleton Batch
+        run: ./gradlew :skeletonBatch:bootRun
