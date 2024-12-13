@@ -22,8 +22,6 @@ repositories {
     mavenCentral()
 }
 
-// Spring Bootプラグインが管理するライブラリに対してバージョン番号を明示的に指定しない。
-// Do not explicitly specify version numbers for libraries managed by the Spring Boot plugin.
 // https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
@@ -33,9 +31,11 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
-tasks.named('test') {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
@@ -58,4 +58,3 @@ jar {
 }
 
 defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'jacocoTestReport', 'spotbugsMain', 'projectReport', 'bootJar'
-
