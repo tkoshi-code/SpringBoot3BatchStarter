@@ -113,6 +113,6 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 
 ## License / ライセンス
 
-Copyright 2024 KINTO Technologies Corporation, Inc.
+Copyright 2024 KINTO Technologies Corporation
 
 This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
