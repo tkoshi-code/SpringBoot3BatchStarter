@@ -58,13 +58,12 @@ class DbToCsvServiceTest {
                 "789 Pine St, Village, Country",
                 (byte) 0));
 
-    when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
-        .thenReturn(mockData);
+    when(memberRepository.selectByTypeAndDeleteFlag(anyList(), eq((byte) 0))).thenReturn(mockData);
 
     BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3), filePath);
 
     assertThat(result).isEqualTo(BatchResult.SUCCESS);
-    verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
+    verify(memberRepository, times(1)).selectByTypeAndDeleteFlag(anyList(), eq((byte) 0));
 
     File csvFile = new File("members.csv");
     assertThat(csvFile.exists()).isTrue();
@@ -75,13 +74,12 @@ class DbToCsvServiceTest {
 
   @Test
   void testExecute_NoData() throws Exception {
-    when(memberRepository.findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0)))
-        .thenReturn(List.of());
+    when(memberRepository.selectByTypeAndDeleteFlag(anyList(), eq((byte) 0))).thenReturn(List.of());
 
     BatchResult result = dbToCsvService.execute(List.of((byte) 1, (byte) 2, (byte) 3), filePath);
 
     assertThat(result).isEqualTo(BatchResult.NODATA);
-    verify(memberRepository, times(1)).findMembersByTypeAndDeleteFlag(anyList(), eq((byte) 0));
+    verify(memberRepository, times(1)).selectByTypeAndDeleteFlag(anyList(), eq((byte) 0));
   }
 
   private MemberRecord createMockMember(

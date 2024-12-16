@@ -20,8 +20,14 @@ This repository serves as a Spring Batch Starter Kit, specifically tailored for 
 
 ### 主な特徴
 - **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築する事が可能です。
-- **DB to CSVバッチ**: MySQLからCSVファイルへデータを出力します。where句を実行時引数で指定する事が可能です。
-- **CSV to DBバッチ**: CSVデータをMySQLにバルクで登録します。
+- **DB to CSVバッチ**: MySQLデータをCSVファイルに簡単に出力できます。実行時引数を利用した動的なWHERE句や柔軟な出力設定に対応しています。
+- **CSV to DBバッチ**: CSVデータをMySQLに効率的に取り込みます。バルク処理機能を備えています。
+
+### Reusability / 再利用性
+
+This kit is highly adaptable. By simply updating the database connection settings and modifying the CSV column definitions to match your specific business needs, you can immediately start using it for your projects.
+
+DB接続設定やCSVのカラム定義を業務仕様に合わせて変更するだけで、すぐにプロジェクトで利用できます。シンプルなテンプレートを基に、業務ロジックを追加するだけで、効率的に高機能なバッチ処理を構築できます。
 
 ---
 

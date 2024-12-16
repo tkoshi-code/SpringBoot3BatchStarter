@@ -24,9 +24,9 @@ public class DbToCsvService {
    */
   public BatchResult execute(List<Byte> types, String filePath) throws Exception {
 
-    byte deleteFlag = 0;
+    final byte deleteFlag = 0;
     List<MemberRecord> memberEntityList =
-        memberRepository.findMembersByTypeAndDeleteFlag(types, deleteFlag);
+        memberRepository.selectByTypeAndDeleteFlag(types, deleteFlag);
 
     if (!memberEntityList.isEmpty()) {
       writeCsv(memberEntityList, filePath);
