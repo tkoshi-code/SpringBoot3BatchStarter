@@ -37,8 +37,9 @@ DB接続設定やCSVのカラム定義を業務仕様に合わせて変更する
 - **Spring Batch Framework**: Streamlined job and step management.
 - **JOOQ ORM**: SQL-like query writing and entity generation, eliminating boilerplate code.
 - **OpenCSV Integration**: Hassle-free CSV file handling.
-- **Multi-Database Support**: H2 for metadata management and MySQL for business data.
-
+- **Multi-Database Support**:
+  - H2 In-Memory Database: Used for batch metadata management.
+  - MySQL Database: Used for business data processing.
 ### ⚙️ Flexibility and Optimization
 - **Dynamic Configurations**: Environment-specific setups with profiles (local/server).
 - **Customizable Batches**: Execute multiple jobs within a single JAR by passing runtime arguments.
