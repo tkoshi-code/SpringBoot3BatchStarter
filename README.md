@@ -105,7 +105,7 @@ cd ../dbAndCsvBatch
 ../gradlew
 ```
 
-### 6. Run Db to CSV Batch
+### 6. Run DB to CSV Batch
 ```bash
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
 ```
