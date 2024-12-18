@@ -1,4 +1,4 @@
-# Spring Batch3 Starter
+# Spring Batch 5 Starter
 
 **Accelerate Your Spring Boot 3 Batch Development** 🚀
 
