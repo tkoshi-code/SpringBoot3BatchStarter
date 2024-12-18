@@ -1,4 +1,4 @@
-name: Build and Test Skeleton Batch
+name: Build
 
 on:
   push:
