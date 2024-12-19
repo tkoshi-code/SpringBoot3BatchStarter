@@ -24,12 +24,14 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Start MySQL with Docker Compose
-        run: docker-compose up -d
+        run: |
+          docker-compose up -d
+          docker-compose ps
 
       - name: Wait for MySQL to initialize
         run: |
           timeout 60s bash -c '
-          until docker exec mysql mysqladmin ping -uroot -prootpassword --silent; do
+          until docker ps -qf "name=mysql" | xargs -r docker exec mysql mysqladmin ping -uroot -prootpassword --silent; do
             echo "Waiting for MySQL to be ready..."
             sleep 5
           done
