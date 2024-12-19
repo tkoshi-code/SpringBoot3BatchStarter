@@ -1,4 +1,4 @@
-name: Build
+name: Build and Test with jOOQ and Docker
 
 on:
   push:
@@ -20,8 +20,26 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build Skeleton Batch with Gradle
-        run: ./gradlew :skeletonBatch:build
+      - name: Set up Docker Compose
+        run: |
+          docker-compose up -d
 
-      - name: Run Skeleton Batch
-        run: ./gradlew :skeletonBatch:bootRun
+      - name: Wait for MySQL to be ready
+        run: |
+          until docker exec $(docker ps -qf "ancestor=mysql:latest") mysqladmin ping -uroot -prootpassword --silent; do
+            echo "Waiting for MySQL to be ready..."
+            sleep 5
+          done
+
+      - name: Generate jOOQ Classes
+        run: ./gradlew generateJooq --info --stacktrace
+
+      - name: Build and Run Tests
+        run: ./gradlew clean build --info --stacktrace
+
+      - name: Archive Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: build/reports/tests/test
