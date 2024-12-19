@@ -9,4 +9,5 @@ services:
       MYSQL_DATABASE: sampledb
       MYSQL_USER: sampleuser
       MYSQL_PASSWORD: samplepassword
-      MYSQL_INITDB_SKIP_TZINFO: 1
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
