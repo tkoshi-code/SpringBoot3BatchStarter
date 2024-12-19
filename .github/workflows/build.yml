@@ -24,14 +24,13 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Start MySQL with Docker Compose
-        run: |
-          docker-compose up -d
-          docker-compose ps
+        run: docker-compose up -d
 
       - name: Wait for MySQL to initialize
         run: |
           timeout 60s bash -c '
-          until docker ps -qf "name=mysql" | xargs -r docker exec mysql mysqladmin ping -uroot -prootpassword --silent; do
+          CONTAINER_ID=$(docker ps -qf "name=mysql")
+          until docker exec $CONTAINER_ID mysqladmin ping -uroot -prootpassword --silent; do
             echo "Waiting for MySQL to be ready..."
             sleep 5
           done
@@ -41,23 +40,19 @@ jobs:
         run: |
           docker exec mysql mysql -uroot -prootpassword -e "SHOW TABLES;" sampledb || echo "No tables found"
 
-      # デバッグ用ログ確認
-      - name: Check MySQL Logs on Failure
+      - name: MySQL Container Logs
         if: failure()
         run: docker-compose logs mysql
 
-      # JDKのセットアップ
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
 
-      # jOOQクラス生成とビルド
       - name: Generate jOOQ Classes and Build
         run: ./gradlew clean generateJooq build --info --stacktrace
 
-      # テストレポートのアーカイブ
       - name: Archive Test Reports
         if: always()
         uses: actions/upload-artifact@v3
