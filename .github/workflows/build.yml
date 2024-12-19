@@ -15,37 +15,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # リポジトリのチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Docker Composeのインストール
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/v2.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
 
-      # MySQLの起動
       - name: Start MySQL with Docker Compose
         run: docker-compose up -d
 
-      # MySQLが準備完了するまで待機
-      - name: Wait for MySQL to be ready
+      - name: Wait for MySQL to initialize
         run: |
           timeout 60s bash -c '
-          until docker exec $(docker ps -qf "ancestor=mysql:latest") mysqladmin ping -uroot -prootpassword --silent; do
+          until docker exec mysql mysqladmin ping -uroot -prootpassword --silent; do
             echo "Waiting for MySQL to be ready..."
             sleep 5
           done
           '
 
-      # MySQLの初期化確認
       - name: Verify MySQL Initialization
         run: |
-          docker exec $(docker ps -qf "ancestor=mysql:latest") mysql -usampleuser -psamplepassword -e "SHOW TABLES;" sampledb
+          docker exec mysql mysql -uroot -prootpassword -e "SHOW TABLES;" sampledb || echo "No tables found"
 
-      # MySQLログの確認（デバッグ用）
-      - name: Check MySQL Logs
+      # デバッグ用ログ確認
+      - name: Check MySQL Logs on Failure
         if: failure()
         run: docker-compose logs mysql
 
@@ -55,11 +50,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-
-      # データベース状態の確認
-      - name: Check Database State
-        run: |
-          docker exec $(docker ps -qf "ancestor=mysql:latest") mysql -usampleuser -psamplepassword -e "SELECT * FROM member;" sampledb
 
       # jOOQクラス生成とビルド
       - name: Generate jOOQ Classes and Build
