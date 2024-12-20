@@ -8,55 +8,50 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## 🇯🇵 Japanese
-
-The Japanese version of the README can be found [here](README.ja.md).
+## 🌐 Language Support
+🇯🇵 日本語版 README は [こちら](README.ja.md).
 
 ## 🔍 Overview
 
-This repository serves as a **Spring Batch Starter Kit**, specifically tailored for **Spring Boot 3** and **Spring Batch 5**. It streamlines batch job development by leveraging the **latest features** and ensuring full compatibility with Spring Boot 3.  
-Whether you’re upgrading from **Spring Boot 2** or starting a new project, this starter kit enables you to **harness the enhanced capabilities** of Spring Batch with ease.
+This comprehensive starter kit is designed specifically for **Spring Boot 3** and **Spring Batch 5**, offering a production-ready foundation for enterprise batch processing applications. It incorporates industry best practices and leverages the latest Spring framework features to accelerate your batch development process.
 
-### 📝 Key Highlights
-- **Skeleton Batch Framework**: Quickly develop custom batch jobs with minimal setup.
-- **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly, with runtime arguments for dynamic WHERE clauses and flexible output configurations.
-- **CSV to DB Batch**: Import CSV data into MySQL efficiently with bulk operations and error handling.
+## ⭐ Core Features
+### 🏗️ Foundation Components
 
-### ♻️ Reusability
+- **Production-Ready Batch Framework**: Pre-configured skeleton structure for rapid development.
+- **Database Operations**:
+  - Efficient DB-to-CSV export with dynamic query support
+  - High-performance CSV-to-DB import with bulk operations
+- **Enterprise-Grade Architecture**: Built with scalability and maintainability in mind
 
-This kit is highly adaptable. By simply updating the database connection settings and modifying the CSV column definitions to match your specific business needs, you can immediately start using it for your projects.
+## 🛠️  Technical Capabilities
+- **Advanced Spring Integration**
+  - Robust Spring Batch job and step management
+  - Type-safe SQL queries with JOOQ ORM
+  - Seamless CSV processing with OpenCSV
+- **Dual Database Configuration**
+  - H2 In-Memory Database for batch metadata
+  - MySQL for business data processing
+
+## 💻 Development Experience
+- **Dynamic Configuration**
+  - Environment-specific profiles (local/server)
+  - Runtime-configurable job execution
+  - Flexible query customization through arguments
+- **Code Quality Tools**
+  - Automated formatting with Google Java Format (Spotless)
+  - Static analysis via Spotbugs
+  - Test coverage reporting with Jacoco
+  - Integrated CI pipeline
+
+## 🚢 DevOps Ready
+- **Containerization**: Docker support with ready-to-use MySQL configuration
+- **CI/CD Integration**: GitHub Actions workflows included
+- **Simplified Build Process**: Single-command builds generating production-ready JARs
 
 ---
 
-
-
-## 💡 Key Features
-
-### Batch Development Made Simple
-- **Spring Batch Framework**: Streamlined job and step management.
-- **JOOQ ORM**: SQL-like query writing and entity generation.
-- **OpenCSV Integration**: Hassle-free CSV file handling.
-- **Multi-Database Support**:
-  - H2 In-Memory Database: Used for batch metadata management.
-  - MySQL Database: Used for business data processing.
-
-### Flexibility and Optimization
-- **Dynamic Configurations**: Environment-specific setups with profiles (local/server).
-- **Dynamic Execution of Multiple Jobs**: Execute multiple jobs dynamically with runtime arguments.
-- **Customizable Batches**: Modify WHERE clauses of queries inside batches dynamically based on runtime arguments.
-- **Google Java Format**: Automated code formatting with Spotless.
-- **Quality Checks and Coverage**: Static analysis with Spotbugs, test coverage generation with Jacoco, and CI tools for checks.
-
-### Future-Proof Design
-- **Skeleton Batch Framework**: A pre-configured template for quickly developing batch jobs.
-- **Docker Environment Setup**: Provides a `compose.yaml` file to easily set up a local MySQL database.
-- **CI/CD**: Achieve Continuous Integration and Continuous Delivery with Github Actions.
-- **Default Tasks**: The default Gradle tasks execute build, tests, and quality checks all at once, simplifying the development process. The final result is a runnable Spring Boot JAR file, with no need to modify the Gradle configuration.
-
- 
----
-
-## 🗂️ Project Structure
+## 📁 Project Structure
 ```text
 .
 ├── gradlew
@@ -79,51 +74,51 @@ This kit is highly adaptable. By simply updating the database connection setting
         └── test
 ```
 
-## 🛠️ Getting Started
+## 🚀 Quick Start Guide
 
 ### 1.	Clone the repository
 ```bash
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
 ```
 
-### 2. Build the Skeleton Batch
+### 2. Build Skeleton Batch
 ```bash
 cd skeletonBatch
 ../gradlew
 ```
 
-### 3. Run the Skeleton Batch
+### 3. Execute Skeleton Batch
 ```bash
 java -jar build/libs/skeletonBatch-*.jar
 ```
 
-### 4. Set up MySQL database (Docker)
+### 4. Initialize Database
 ```bash
 docker compose up -d
 ```
 
-### 5. Build the DB and CSV Batch jobs
+### 5. Build Data Processing Jobs
 ```bash
 cd ../dbAndCsvBatch
 ../gradlew
 ```
 
-### 6. Run DB to CSV Batch
+### 6. Run Database Export
 ```bash
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
 ```
 
-### 7. Run CSV to DB Batch
+### 7. Run Database Import
 ```bash
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
 ```
 
-> **Note**: Ensure Docker is installed and running before executing step 4.
+> **Note**: Docker installation is required for database setup.
 
-#### 🎉 **With this Spring Batch Starter Kit, you can focus on your business logic while the framework handles the heavy lifting.**
-**Happy coding!** 🚀
+## ♻️ Adaptability
+The starter kit is designed for easy customization. Simply modify the database configurations and CSV mappings to align with your specific requirements, and you're ready to start processing your business data.
 
-## 📄 License
+## 📜 License
+Licensed under the **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**.  
 
-This project is licensed under the **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**.  
 Copyright © 2024 KINTO Technologies Corporation

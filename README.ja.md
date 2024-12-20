@@ -7,54 +7,51 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## 🇬🇧 English
+## 🌐 言語サポート
 
-The English version of the README can be found [here](README.md).
+🇬🇧 英語版のREADMEは[こちら](README.md)
 
 ## 🔍 概要
 
-このリポジトリは、**Spring Boot 3** と **Spring Batch 5** のために特化した**Spring Batchスターターキット**です。  
-最新機能を活用し、Spring Boot 3との完全な互換性を持つことで、バッチジョブ開発を効率化します。  
-**Spring Boot 2** からの移行や新規プロジェクトで、**Spring Batchの強化された機能**を簡単に活用できます。
+このリポジトリは**Spring Boot 3**と**Spring Batch 5**に特化した、エンタープライズ向けバッチ処理アプリケーションの基盤となるスターターキットです。業界のベストプラクティスを取り入れ、最新のSpringフレームワーク機能を活用してバッチ開発プロセスを加速します。
 
-### 📝 主な特徴
-- **スケルトンバッチフレームワーク**: 最小限の設定でカスタムバッチジョブを簡単に開発できます。
-- **DB to CSV バッチ**: MySQLデータをCSVファイルにエクスポート。動的なWHERE句や柔軟な出力設定に対応しています。
-- **CSV to DB バッチ**: CSVデータをMySQLに効率的にインポートします。バルク処理とエラーハンドリング機能を備えています。
+### ⭐ 主要機能
 
-### ♻️ 再利用性
-データベース接続設定やCSVのカラム定義を業務要件に合わせて変更するだけで、すぐにプロジェクトに適用できます。
+#### 🏗️ 基本コンポーネント
+- **本番対応バッチフレームワーク**: 高速開発のための事前設定済み基本構造
+- **データベース操作**:
+  - 動的クエリ対応のDB-to-CSVエクスポート
+  - バルク処理によるハイパフォーマンスなCSV-to-DBインポート
+- **エンタープライズグレードのアーキテクチャ**: スケーラビリティとメンテナンス性を考慮した設計
+ 
+### 🛠️ 技術的な特徴
+- **Springフレームワークの活用**
+  - 堅牢なSpring Batchのジョブとステップ管理
+  - JOOQ ORMによる型安全なSQLクエリ
+  - OpenCSVによるシームレスなCSV処理
+- **デュアルデータベース設定**
+  - バッチメタデータ用のH2インメモリデータベース
+  - ビジネスデータ処理用のMySQL
 
----
+### 💻 開発環境の特徴
+- **動的設定**
+  - 環境別プロファイル（ローカル/サーバー）
+  - 実行時引数による実行するジョブの選択
+  - 実行時引数による柔軟なクエリカスタマイズ
+- **コード品質ツール**
+  - Google Java Format（Spotless）による自動フォーマット
+  - Spotbugsによる静的解析
+  - Jacocoによるテストカバレッジレポート
+  - パイプライン
 
-
-
-## 💡 特徴
-
-### バッチ開発を簡単に
-- **Spring Batch フレームワーク**: ジョブとステップの管理を効率化。
-- **jooq ORM**: SQLライクなクエリ記述とエンティティ生成機能。
-- **OpenCSV**: CSVファイルの簡単な取り扱い。
-- **マルチデータベースサポート**:
-  - H2 : バッチメタデータ管理にH2
-  - MySQL : 業務データ処理にMySQL
-
-### 柔軟性と最適化
-- **動的な設定**: 環境ごとの設定（ローカル/サーバー）をプロファイルで管理。
-- **複数ジョブの動的実行**: 実行時の引数で複数のジョブを動的に実行。
-- **カスタマイズ可能なバッチ**: 実行時の引数により、バッチ内のクエリのWHERE句を動的に変更。
-- **Google Java Format**: Spotlessを使用した自動コード整形。
-- **品質チェックとカバレッジ**: Spotbugsによる静的解析、Jacocoによるテストカバレッジの生成、CIツールでのチェック。
-
-### 将来に向けた設計
-- **スケルトンバッチフレームワーク**: バッチジョブを迅速に開発できる事前設定されたテンプレート。
-- **Docker環境設定**: ローカルのMySQLデータベースを簡単にセットアップできる`compose.yaml`ファイルを提供。
-- **CI/CD**: Github Actions で 継続的インテグレーションと継続的デリバリーを実現。
-- **デフォルトタスク**: Gradleのデフォルトタスクでビルド、テスト、品質チェックを一度に実行し、実行可能なSpring Boot JARファイルが生成されるため、開発プロセスを簡素化。Gradleの設定を変更する必要はありません。
+### 🚢 DevOps対応
+- コンテナ化: 使用準備完了のMySQL設定を含むDocker対応
+- CI/CD統合: GitHub Actionsワークフロー搭載
+- シンプルなビルドプロセス: 本番対応JARを生成するシングルコマンドビルド
 
 ---
 
-## 🗂️ プロジェクト構成
+## 📁 プロジェクト構造
 ```text
 .
 ├── gradlew
@@ -77,25 +74,25 @@ The English version of the README can be found [here](README.md).
         └── test
 ```
 
-## 🛠️ はじめに
+## 🚀 クイックスタートガイド
 
-### 1.	リポジトリをクローンする
+### 1.	リポジトリのクローン
 ```bash
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
 ```
 
-### 2. スケルトンバッチをビルドする
+### 2. スケルトンバッチのビルド
 ```bash
 cd skeletonBatch
 ../gradlew
 ```
 
-### 3. スケルトンバッチを実行する
+### 3. スケルトンバッチの実行
 ```bash
 java -jar build/libs/skeletonBatch-*.jar
 ```
 
-### 4. MySQLデータベースを設定する（Docker）
+### 4. データベースの初期化
 ```bash
 docker compose up -d
 ```
@@ -116,14 +113,13 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
 ```
 
-> **注意**: 	ステップ4を実行する前にDockerがインストールされていて、実行中であることを確認してください。
+> **注意**: 	データベースセットアップにはDockerのインストールが必要です。
 
+## ♻️ カスタマイズ性
+このスターターキットは簡単なカスタマイズを想定して設計されています。データベース設定とCSVマッピングを特定の要件に合わせて変更するだけで、すぐにビジネスデータの処理を開始できます。
 
-#### 🎉 このSpring Batchスターターキットを使用すれば、すでに土台が構築されているので、ビジネスロジックに集中できます。
-**楽しいコーディングを！** 🚀
+## 📜 ライセンス
 
-## 📄 ライセンス
-
-このプロジェクトは、**[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)** の下でライセンスされています。
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)でライセンスされています
 
 Copyright © 2024 KINTO Technologies Corporation
