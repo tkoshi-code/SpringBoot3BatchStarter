@@ -44,7 +44,7 @@ This kit is highly adaptable. By simply updating the database connection setting
 ### Future-Proof Design
 - **Skeleton Batch Framework**: A template for creating new batch jobs.
 - **Pre-configured Docker Environment**: Quickly set up a local MySQL database.
-- **CI/CD**: Achieve Continuous Integration and Continuous Delivery with Github Actions.
+- **CI/CD**: Implemented Continuous Integration and Continuous Delivery with Github Actions.
 
 ---
 
