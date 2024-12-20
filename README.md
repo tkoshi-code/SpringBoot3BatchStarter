@@ -22,7 +22,7 @@ Whether you’re upgrading from **Spring Boot 2** or starting a new project, thi
 - **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly, with runtime arguments for dynamic WHERE clauses and flexible output configurations.
 - **CSV to DB Batch**: Import CSV data into MySQL efficiently with bulk operations and error handling.
 
-### Reusability / 再利用性
+### ♻️ Reusability
 
 This kit is highly adaptable. By simply updating the database connection settings and modifying the CSV column definitions to match your specific business needs, you can immediately start using it for your projects.
 
@@ -42,12 +42,14 @@ This kit is highly adaptable. By simply updating the database connection setting
 
 ### Flexibility and Optimization
 - **Dynamic Configurations**: Environment-specific setups with profiles (local/server).
-- **Customizable Batches**: Execute multiple jobs dynamically with runtime arguments.
+- **Dynamic Execution of Multiple Jobs**: Execute multiple jobs dynamically with runtime arguments.
+- **Customizable Batches**: Modify WHERE clauses of queries inside batches dynamically based on runtime arguments.
 - **Google Java Format**: Automated code formatting with Spotless.
+- **Quality Checks and Coverage**: Static analysis with Spotbugs, test coverage generation with Jacoco, and CI tools for checks.
 
 ### Future-Proof Design
-- **Skeleton Batch Framework**: A template for creating new batch jobs.
-- **Pre-configured Docker Environment**: Quickly set up a local MySQL database.
+- **Skeleton Batch Framework**: A pre-configured template for quickly developing batch jobs.
+- **Docker Environment Setup**: Provides a `compose.yaml` file to easily set up a local MySQL database.
 - **CI/CD**: Achieve Continuous Integration and Continuous Delivery with Github Actions.
 
 ---

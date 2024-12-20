@@ -9,19 +9,23 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## 🔍 Overview
+## 🇬🇧 English
+
+The English version of the README can be found [here](README.md).
+
+## 🔍 概要
 
 このリポジトリは、**Spring Boot 3** と **Spring Batch 5** のために特化した**Spring Batchスターターキット**です。  
 最新機能を活用し、Spring Boot 3との完全な互換性を持つことで、バッチジョブ開発を効率化します。  
 **Spring Boot 2** からの移行や新規プロジェクトで、**Spring Batchの強化された機能**を簡単に活用できます。
 
-### 📝 Key Highlights
+### 📝 主な特徴
 - **スケルトンバッチフレームワーク**: 最小限の設定でカスタムバッチジョブを簡単に開発できます。
 - **DB to CSV バッチ**: MySQLデータをCSVファイルにエクスポート。動的なWHERE句や柔軟な出力設定に対応しています。
 - **CSV to DB バッチ**: CSVデータをMySQLに効率的にインポートします。バルク処理とエラーハンドリング機能を備えています。
 
-### 再利用性
-このキットは非常に適応性があります。データベース接続設定を更新し、CSVのカラム定義を業務要件に合わせて変更するだけで、すぐにプロジェクトに利用できます。
+### ♻️ 再利用性
+このキットは非常に柔軟で、データベース接続設定を変更し、CSVのカラム定義を業務要件に合わせるだけで、すぐにプロジェクトに利用できます。
 
 ---
 
@@ -29,27 +33,29 @@
 
 ## 💡 特徴
 
-### Batch Development Made Simple
+### バッチ開発を簡単に
 - **Spring Batch フレームワーク**: ジョブとステップの管理を効率化。
-- **JOOQ ORM**: SQLライクなクエリ記述とエンティティ生成機能。
-- **OpenCSV 統合**: CSVファイルの簡単な取り扱い。
+- **jooq ORM**: SQLライクなクエリ記述とエンティティ生成機能。
+- **OpenCSV**: CSVファイルの簡単な取り扱い。
 - **マルチデータベースサポート**:
   - H2 : バッチメタデータ管理にH2
   - MySQL : 業務データ処理にMySQL
 
 ### 柔軟性と最適化
 - **動的な設定**: 環境ごとの設定（ローカル/サーバー）をプロファイルで管理。
-- **カスタマイズ可能なバッチ**: 実行時の引数で複数のジョブを動的に実行。
+- **複数ジョブの動的実行**: 実行時の引数で複数のジョブを動的に実行。
+- **カスタマイズ可能なバッチ**: 実行時の引数により、バッチ内のクエリのWHERE句を動的に変更。
 - **Google Java Format**: Spotlessを使用した自動コード整形。
+- **品質チェックとカバレッジ**: Spotbugsによる静的解析、Jacocoによるテストカバレッジの生成、CIツールでのチェック。
 
 ### 将来に向けた設計
-- **スケルトンバッチフレームワーク**: 事前設定されたDocker環境。
-- **事前設定されたDocker環境**: ローカルのMySQLデータベースを迅速にセットアップ。
-- **CI/CD**: Github Actions で「継続的インテグレーションと継続的デリバリーを実現。
+- **スケルトンバッチフレームワーク**: バッチジョブを迅速に開発できる事前設定されたテンプレート。
+- **Docker環境設定**: ローカルのMySQLデータベースを簡単にセットアップできる`compose.yaml`ファイルを提供。
+- **CI/CD**: Github Actions で 継続的インテグレーションと継続的デリバリーを実現。
 
 ---
 
-## 🗂️ プロジェクト概要
+## 🗂️ プロジェクト構成
 ```text
 .
 ├── gradlew
@@ -113,10 +119,12 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 
 > **注意**: 	ステップ4を実行する前にDockerがインストールされていて、実行中であることを確認してください。
 
-#### 🎉 このSpring Batchスターターキットを使えば、フレームワークが重い作業を引き受ける間に、あなたはビジネスロジックに集中できます。
+
+#### 🎉 このSpring Batchスターターキットを使用すれば、すでに土台が構築されているので、ビジネスロジックに集中できます。
 **楽しいコーディングを！** 🚀
 
 ## 📄 ライセンス
 
 このプロジェクトは、**[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)** の下でライセンスされています。
+
 Copyright © 2024 KINTO Technologies Corporation
