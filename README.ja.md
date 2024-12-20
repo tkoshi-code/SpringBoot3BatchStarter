@@ -1,5 +1,3 @@
-### 日本語用README (`README.ja.md`)
-
 # Spring Batch 5 Starter
 
 **コピペで即完成! Spring Batch 5** 🚀
