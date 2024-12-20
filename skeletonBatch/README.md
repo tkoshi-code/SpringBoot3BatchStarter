@@ -1,17 +1,14 @@
 # Skeleton Batch - Spring Batch Template 🚀
 
-## Overview / 概要 🌟
+## 🌟 Overview
 
-The skeletonBatch module is a streamlined template designed to help you create custom batch jobs effortlessly with Spring Batch.
-Simply add your business logic, and you’ll have a fully operational Spring Boot 3 batch application in no time.
+The SkeletonBatch module is a streamlined template designed to help you create custom batch jobs effortlessly with Spring Batch. Simply add your business logic, and you’ll have a fully operational Spring Boot 3 batch application in no time.
 
-SkeletonBatch モジュールは、Spring Batch を使って簡単かつ効率的にカスタムバッチジョブを作成するためのテンプレートです。
-業務ロジックを追加するだけで、すぐに動作する Spring Boot 3 バッチアプリケーションを構築できます。
 ---
 
-## How to Run / 実行方法 🔧
+##  🔧 How to Run
 
-Step-by-step Instructions
+### Step-by-step Instructions
 ```bash
 # Navigate to the skeletonBatch directory
 cd skeletonBatch
@@ -25,7 +22,8 @@ ls -ls build/libs/skeletonBatch-*.jar
 # Run the skeleton batch application
 java -jar build/libs/skeletonBatch-*.jar
 ```
-## Highlights / 特徴 ✨
+
+## ✨ Highlights 
 - Simple Setup: Pre-configured tasks for quick builds.
 - Fast Execution: Minimal effort to start your batch job.
 - Customizable: Extend the template with your business logic.

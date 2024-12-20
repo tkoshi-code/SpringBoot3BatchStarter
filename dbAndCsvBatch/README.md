@@ -1,19 +1,14 @@
-# dbAndCsvBatch - Database and CSV Batch Processing / データベースとCSVのバッチ処理 🚀
+# dbAndCsvBatch - Database and CSV Batch Processing
 
 This module provides practical batch processing samples for:
 
-このモジュールは以下のバッチ処理サンプルを提供します:
 1. Exporting data from a database to a CSV file (DB to CSV).  
-   データベースからCSVファイルを生成します (DB to CSV)。
 2. Importing data from a CSV file into a database (CSV to DB).  
-   CSVファイルからデータベースにデータを登録します (CSV to DB)。
 
 ## 🐳 Docker Setup
 If Docker is not available, download it from the [official Docker website](https://www.docker.com/get-started). Follow the installation instructions for your operating system.
 
-注釈: Dockerコマンドが使用できない場合は、[Dockerの公式サイト](https://www.docker.com/get-started)からダウンロードしてインストールしてください。
-
-## How to Run / 実行方法
+## How to Run
 Steps:
 1. Build and run the MySQL container:
 ```bash
@@ -34,9 +29,7 @@ mysql> SELECT * FROM member WHERE delete_flag = 0 AND type IN (1, 2, 3) ORDER BY
 
 mysql> exit;
 ```
-## 💻 How to Run / 実行方法
-
-Step-by-Step Guide
+## 💻 Step-by-Step Guide:
 1. Generate the JAR file
 Execute the default task to generate the Spring Boot JAR file:
 ```bash
@@ -84,4 +77,3 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spr
 java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=server
 ```
 With this module, you can seamlessly integrate database and CSV operations into your Spring Boot batch applications. Happy coding! 🎉
-
