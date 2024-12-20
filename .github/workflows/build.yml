@@ -1,4 +1,4 @@
-name: Build and Test with jOOQ and Docker
+name: Build and Test
 
 on:
   pull_request:

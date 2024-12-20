@@ -66,7 +66,7 @@ class CsvToDbServiceTest {
             "2024-12-07T09:46:07"
           });
     }
-    log.info("Temporary CSV file content written successfully.");
+    log.info("Temporary CSV file created at: {}", tempCsvFile.getAbsolutePath());
   }
 
   @Test
