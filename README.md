@@ -8,6 +8,10 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## 🇯🇵 Japanese
+
+The Japanese version of the README can be found [here](README.ja.md).
+
 ## 🔍 Overview
 
 This repository serves as a **Spring Batch Starter Kit**, specifically tailored for **Spring Boot 3** and **Spring Batch 5**. It streamlines batch job development by leveraging the **latest features** and ensuring full compatibility with Spring Boot 3.  
