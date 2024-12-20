@@ -51,7 +51,9 @@ This kit is highly adaptable. By simply updating the database connection setting
 - **Skeleton Batch Framework**: A pre-configured template for quickly developing batch jobs.
 - **Docker Environment Setup**: Provides a `compose.yaml` file to easily set up a local MySQL database.
 - **CI/CD**: Achieve Continuous Integration and Continuous Delivery with Github Actions.
+- **Default Tasks**: The default Gradle tasks execute build, tests, and quality checks all at once, simplifying the development process. The final result is a runnable Spring Boot JAR file, with no need to modify the Gradle configuration.
 
+ 
 ---
 
 ## 🗂️ Project Structure
