@@ -8,34 +8,25 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## 🔍 Overview / 概要
+## 🔍 Overview
 
 This repository serves as a **Spring Batch Starter Kit**, specifically tailored for **Spring Boot 3** and **Spring Batch 5**. It streamlines batch job development by leveraging the **latest features** and ensuring full compatibility with Spring Boot 3.  
 Whether you’re upgrading from **Spring Boot 2** or starting a new project, this starter kit enables you to **harness the enhanced capabilities** of Spring Batch with ease.
 
-このリポジトリは、Spring Boot 3 と Spring Batch 5 の最新機能を活用して、バッチ処理開発を効率化するためのスターターキットです。動作する事が保証されたテンプレート上に業務ロジックを追加するだけで、簡単にバッチ処理を構築できます。Spring Boot 2 からの移行や新規プロジェクトにおいて、すぐに最新のバッチフレームワークを活用できます。
-
-### 📝 Key Highlights / 主な特徴
+### 📝 Key Highlights
 - **Skeleton Batch Framework**: Quickly develop custom batch jobs with minimal setup.
 - **DB to CSV Batch**: Export data from MySQL to CSV files seamlessly, with runtime arguments for dynamic WHERE clauses and flexible output configurations.
 - **CSV to DB Batch**: Import CSV data into MySQL efficiently with bulk operations and error handling.
-
-
-- **スケルトンバッチ**: 業務ロジックを追加するだけでバッチを簡単に構築する事が可能です。
-- **DB to CSVバッチ**: MySQLデータをCSVファイルに簡単に出力できます。実行時引数を利用した動的なWHERE句や柔軟な出力設定に対応しています。
-- **CSV to DBバッチ**: CSVデータをMySQLに効率的に取り込みます。バルク処理機能を備えています。
 
 ### Reusability / 再利用性
 
 This kit is highly adaptable. By simply updating the database connection settings and modifying the CSV column definitions to match your specific business needs, you can immediately start using it for your projects.
 
-DB接続設定やCSVのカラム定義を業務仕様に合わせて変更するだけで、すぐにプロジェクトで利用できます。シンプルなテンプレートを基に、業務ロジックを追加するだけで、効率的に高機能なバッチ処理を構築できます。
-
 ---
 
 
 
-## 💡 Key Features / 特徴
+## 💡 Key Features
 
 ### Batch Development Made Simple
 - **Spring Batch Framework**: Streamlined job and step management.
@@ -53,10 +44,11 @@ DB接続設定やCSVのカラム定義を業務仕様に合わせて変更する
 ### Future-Proof Design
 - **Skeleton Batch Framework**: A template for creating new batch jobs.
 - **Pre-configured Docker Environment**: Quickly set up a local MySQL database.
+- **CI/CD**: Achieve Continuous Integration and Continuous Delivery with Github Actions.
 
 ---
 
-## 🗂️ Project Structure / プロジェクト構成
+## 🗂️ Project Structure
 ```text
 .
 ├── gradlew
@@ -79,7 +71,7 @@ DB接続設定やCSVのカラム定義を業務仕様に合わせて変更する
         └── test
 ```
 
-## 🛠️ Getting Started / はじめに
+## 🛠️ Getting Started
 
 ### 1.	Clone the repository
 ```bash
@@ -123,7 +115,7 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 #### 🎉 **With this Spring Batch Starter Kit, you can focus on your business logic while the framework handles the heavy lifting.**
 **Happy coding!** 🚀
 
-## 📄 License / ライセンス
+## 📄 License
 
 This project is licensed under the **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**.  
 Copyright © 2024 KINTO Technologies Corporation
