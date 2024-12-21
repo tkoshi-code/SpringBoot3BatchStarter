@@ -23,6 +23,7 @@ public class SampleJob {
 
   @Bean
   public Job createSampleJob() {
+    log.info("----------- Registering job: sample -----------");
 
     // Create a step for processing
     Step myStep =
@@ -31,8 +32,13 @@ public class SampleJob {
             .build();
 
     // Build and return the job
-    return new JobBuilder("sample-job", jobRepository)
+    Job myJob =
+        new JobBuilder("sample-job", jobRepository)
             .start(myStep)
             .build();
+
+    log.info("----------- Job registered successfully: {} -----------", myJob.getName());
+
+    return myJob;
   }
 }

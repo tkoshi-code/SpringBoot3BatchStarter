@@ -18,6 +18,7 @@ public class SampleLogic implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
                               ChunkContext chunkContext) throws Exception {
+    log.info("----------- START ----------- Batch Processing -----------");
 
     try {
       // Execute business logic
@@ -28,6 +29,7 @@ public class SampleLogic implements Tasklet {
       throw e;
     }
 
+    log.info("-----------  END  ----------- Batch Processing -----------");
     return RepeatStatus.FINISHED;
   }
 }
