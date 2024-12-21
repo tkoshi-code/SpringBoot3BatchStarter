@@ -16,17 +16,17 @@ public class SampleLogic implements Tasklet {
   private final SampleService sampleService;
 
   @Override
-  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
-      throws Exception {
+  public RepeatStatus execute(StepContribution contribution,
+                              ChunkContext chunkContext) throws Exception {
 
-    log.info("----------- START ----------- SampleLogic ----------- START -----------");
     try {
-      sampleService.execute();
+      // Execute business logic
+      sampleService.process();
+      log.info("Processing completed successfully");
     } catch (Exception e) {
-      log.error("Job failure", e);
+      log.error("Error occurred during processing", e);
       throw e;
     }
-    log.info("-----------  END  ----------- SampleLogic -----------  END  -----------");
 
     return RepeatStatus.FINISHED;
   }

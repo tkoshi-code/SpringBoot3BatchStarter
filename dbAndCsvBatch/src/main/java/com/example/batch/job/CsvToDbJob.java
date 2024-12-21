@@ -18,28 +18,22 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class CsvToDbJob {
 
+  private final JobRepository jobRepository;
+  private final PlatformTransactionManager transactionManager;
   private final CsvToDbLogic logic;
   private final BatchNotificationListener listener;
 
   private static final String BATCH_NAME = "CSV_TO_DB";
 
   @Bean
-  public Job createCsvToDbJob(
-      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("Registering job: {}", BATCH_NAME);
-
-    Job myJob =
-        new JobBuilder(BATCH_NAME, jobRepository)
-            .incrementer(new RunIdIncrementer())
-            .listener(listener)
-            .start(
-                new StepBuilder(BATCH_NAME + "-step", jobRepository)
-                    .tasklet(logic, transactionManager)
-                    .build())
-            .build();
-
-    log.info("Job registered successfully: {} ", myJob.getName());
-
-    return myJob;
+  public Job createCsvToDbJob() {
+    return new JobBuilder(BATCH_NAME, jobRepository)
+        .incrementer(new RunIdIncrementer())
+        .listener(listener)
+        .start(
+            new StepBuilder(BATCH_NAME + "-step", jobRepository)
+                .tasklet(logic, transactionManager)
+                .build())
+        .build();
   }
 }

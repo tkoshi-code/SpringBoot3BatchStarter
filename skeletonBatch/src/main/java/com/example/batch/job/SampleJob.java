@@ -9,31 +9,30 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
+@Configuration
 public class SampleJob {
 
+  private final JobRepository jobRepository;
+  private final PlatformTransactionManager transactionManager;
   private final SampleLogic logic;
 
-  private static final String BATCH_NAME = "sample";
-
   @Bean
-  public Job createSampleJob(
-      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-    log.info("----------- Registering job: {} -----------", BATCH_NAME);
+  public Job createSampleJob() {
 
+    // Create a step for processing
     Step myStep =
-        new StepBuilder(BATCH_NAME + "-step", jobRepository)
+        new StepBuilder("processing-step", jobRepository)
             .tasklet(logic, transactionManager)
             .build();
 
-    Job myJob = new JobBuilder(BATCH_NAME + "-job", jobRepository).start(myStep).build();
-
-    log.info("----------- Job registered successfully: {} -----------", myJob.getName());
-    return myJob;
+    // Build and return the job
+    return new JobBuilder("sample-job", jobRepository)
+            .start(myStep)
+            .build();
   }
 }

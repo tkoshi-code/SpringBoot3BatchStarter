@@ -9,20 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class SampleService {
 
-  public void execute() throws Exception {
-    log.info("----------- START ----------- SampleService ----------- START -----------");
+  public void process() throws Exception {
+    log.info("--- Starting batch process ---");
 
-    log.info(
-        System.lineSeparator().repeat(3)
-            + "***************************************************************************************"
-            + System.lineSeparator()
-            + "***                     ここにバッチの業務ロジックを記述する !!!                          ***"
-            + System.lineSeparator()
-            + "***                     Write your batch business logic here!                       ***"
-            + System.lineSeparator()
-            + "***************************************************************************************"
-            + System.lineSeparator().repeat(3));
+    // Add your business logic here
+    // Example:
+    // - Data validation
+    // - Data transformation
+    // - External system integration
 
-    log.info("-----------  END  ----------- SampleService -----------  END  -----------");
+    log.info("--- Batch process completed ---");
   }
 }
