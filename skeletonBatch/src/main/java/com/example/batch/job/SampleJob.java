@@ -32,10 +32,7 @@ public class SampleJob {
             .build();
 
     // Build and return the job
-    Job myJob =
-        new JobBuilder("sample-job", jobRepository)
-            .start(myStep)
-            .build();
+    Job myJob = new JobBuilder("sample-job", jobRepository).start(myStep).build();
 
     log.info("----------- Job registered successfully: {} -----------", myJob.getName());
 

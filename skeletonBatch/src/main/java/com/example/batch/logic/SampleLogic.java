@@ -16,8 +16,8 @@ public class SampleLogic implements Tasklet {
   private final SampleService sampleService;
 
   @Override
-  public RepeatStatus execute(StepContribution contribution,
-                              ChunkContext chunkContext) throws Exception {
+  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
+      throws Exception {
     log.info("----------- START ----------- Batch Processing -----------");
 
     try {
