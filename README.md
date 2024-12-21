@@ -94,7 +94,7 @@ java -jar build/libs/skeletonBatch-*.jar
 
 ### 4. Initialize Database
 ```bash
-docker compose up -d
+docker compose down && docker compose build && docker compose up -d
 ```
 
 ### 5. Build Data Processing Jobs

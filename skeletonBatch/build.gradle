@@ -9,17 +9,21 @@ plugins {
     id("com.github.spotbugs") version "6.0.27"
 }
 
+repositories {mavenCentral()}
+
 group = 'com.example.batch'
 version = '0.0.1-SNAPSHOT'
 description = 'SpringBatchSkeleton'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
-repositories {
-    mavenCentral()
+bootJar {
+    archiveBaseName = 'batch-skeleton'
+    archiveVersion = '0.0.1'
 }
 
 // https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
@@ -49,12 +53,6 @@ spotless {
 
 spotbugs {
     ignoreFailures = true
-}
-
-jar {
-    archiveBaseName = 'batch-skeleton'
-    archiveVersion = '0.0.1'
-    enabled = true
 }
 
 defaultTasks 'tasks', 'spotlessApply', 'clean', 'check', 'jacocoTestReport', 'spotbugsMain', 'projectReport', 'bootJar'
