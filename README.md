@@ -11,6 +11,13 @@
 ## 🌐 Language Support
 🇯🇵 日本語版 README は [こちら](README.ja.md).
 
+## 📋 Requirements
+- JDK 21 (automatically downloaded by Gradle toolchain)
+- Docker Desktop
+- Gradle 8.5+ (not required if using gradlew)
+
+> 💡 This project uses JDK 21, but thanks to Gradle's toolchain feature, it will be automatically downloaded even if not installed locally.
+
 ## 🔍 Overview
 
 This comprehensive starter kit is designed specifically for **Spring Boot 3** and **Spring Batch 5**, offering a production-ready foundation for enterprise batch processing applications. It incorporates industry best practices and leverages the latest Spring framework features to accelerate your batch development process.
@@ -48,6 +55,23 @@ This comprehensive starter kit is designed specifically for **Spring Boot 3** an
 - **Containerization**: Docker support with ready-to-use MySQL configuration
 - **CI/CD Integration**: GitHub Actions workflows included
 - **Simplified Build Process**: Single-command builds generating production-ready JARs
+
+## 📌 Version Information
+- Spring Boot: 3.4.1
+- Spring Dependency Management: 1.1.7
+- Spotless (Google Java Format): 6.22.0
+- jOOQ: 9.0
+- OpenCSV: 5.9
+- SpotBugs: 6.0.27
+
+### Plugins
+- spring-boot
+- spring-dependency-management
+- spotless
+- jooq
+- jacoco
+- spotbugs
+- project-report
 
 ---
 
@@ -114,6 +138,17 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 ```
 
 > **Note**: Docker installation is required for database setup.
+
+## 🔧 Troubleshooting
+
+### Common Issues
+#### 1. Entity classes not found
+   - Cause: jOOQ auto-generation not executed
+   - Solution: Run `./gradlew build`
+
+#### 2. Database connection error
+   - Cause: MySQL container not running
+   - Solution: Run `docker compose up -d`
 
 ## ♻️ Adaptability
 The starter kit is designed for easy customization. Simply modify the database configurations and CSV mappings to align with your specific requirements, and you're ready to start processing your business data.

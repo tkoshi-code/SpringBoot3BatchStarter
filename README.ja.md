@@ -11,6 +11,13 @@
 
 🇬🇧 英語版のREADMEは[こちら](README.md)
 
+## 📋 必要要件
+- JDK 21（Gradleのツールチェーンで自動的にダウンロード）
+- Docker Desktop
+- Gradle 8.5以上（gradlewを使用する場合は不要）
+
+> 💡 このプロジェクトはJDK 21を使用しますが、Gradleのツールチェーン機能により、ローカル環境にJDK 21がインストールされていなくても自動的に必要なJDKがダウンロードされます。
+
 ## 🔍 概要
 
 このリポジトリは**Spring Boot 3**と**Spring Batch 5**に特化した、エンタープライズ向けバッチ処理アプリケーションの基盤となるスターターキットです。業界のベストプラクティスを取り入れ、最新のSpringフレームワーク機能を活用してバッチ開発プロセスを加速します。
@@ -48,6 +55,23 @@
 - コンテナ化: 使用準備完了のMySQL設定を含むDocker対応
 - CI/CD統合: GitHub Actionsワークフロー搭載
 - シンプルなビルドプロセス: 本番対応JARを生成するシングルコマンドビルド
+
+## 📌 バージョン情報
+- Spring Boot: 3.4.1
+- Spring Dependency Management: 1.1.7
+- Spotless (Google Java Format): 6.22.0
+- jOOQ: 9.0
+- OpenCSV: 5.9
+- SpotBugs: 6.0.27
+
+### 使用プラグイン
+- spring-boot
+- spring-dependency-management
+- spotless
+- jooq
+- jacoco
+- spotbugs
+- project-report
 
 ---
 
@@ -114,6 +138,17 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 ```
 
 > **注意**: 	データベースセットアップにはDockerのインストールが必要です。
+
+## 🔧 トラブルシューティング
+### よくある問題
+
+#### 1. Entityクラスが見つからない
+   - 原因: jOOQによる自動生成が未実行
+   - 解決: ./gradlew buildを実行
+
+#### 2. データベース接続エラー
+   - 原因: MySQLコンテナが未起動
+   - 解決: docker compose up -dを実行
 
 ## ♻️ カスタマイズ性
 このスターターキットは簡単なカスタマイズを想定して設計されています。データベース設定とCSVマッピングを特定の要件に合わせて変更するだけで、すぐにビジネスデータの処理を開始できます。
