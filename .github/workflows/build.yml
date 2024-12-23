@@ -60,20 +60,12 @@ jobs:
           cd dbAndCsvBatch
           ../gradlew
 
-      - name: Upload coverage to Codecov for skeletonBatch
-        uses: codecov/codecov-action@v4
-        with:
-          files: skeletonBatch/build/reports/jacoco/test/jacocoTestReport.xml
-
-      - name: Upload coverage to Codecov for dbAndCsvBatch
-        uses: codecov/codecov-action@v4
-        with:
-          files: dbAndCsvBatch/build/reports/jacoco/test/jacocoTestReport.xml
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: ./*/build/reports/jacoco/test/jacocoTestReport.xml
+          files: |
+            skeletonBatch/build/reports/jacoco/test/jacocoTestReport.xml
+            dbAndCsvBatch/build/reports/jacoco/test/jacocoTestReport.xml
 
       - name: Archive Test Reports
         if: always()
