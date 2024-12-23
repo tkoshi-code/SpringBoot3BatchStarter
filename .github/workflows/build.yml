@@ -53,12 +53,12 @@ jobs:
       - name: Build skeletonBatch
         run: |
           cd skeletonBatch
-          ../gradlew clean generateJooq build jacocoTestReport --info --stacktrace
+          ../gradlew
 
       - name: Build dbAndCsvBatch
         run: |
           cd dbAndCsvBatch
-          ../gradlew clean generateJooq build jacocoTestReport --info --stacktrace
+          ../gradlew
 
       - name: Upload coverage to Codecov for skeletonBatch
         uses: codecov/codecov-action@v4
