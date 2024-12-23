@@ -50,8 +50,30 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Generate jOOQ Classes and Build
-        run: ./gradlew clean generateJooq build --info --stacktrace
+      - name: Build skeletonBatch
+        run: |
+          cd skeletonBatch
+          ../gradlew clean generateJooq build jacocoTestReport --info --stacktrace
+
+      - name: Build dbAndCsvBatch
+        run: |
+          cd dbAndCsvBatch
+          ../gradlew clean generateJooq build jacocoTestReport --info --stacktrace
+
+      - name: Upload coverage to Codecov for skeletonBatch
+        uses: codecov/codecov-action@v4
+        with:
+          files: skeletonBatch/build/reports/jacoco/test/jacocoTestReport.xml
+
+      - name: Upload coverage to Codecov for dbAndCsvBatch
+        uses: codecov/codecov-action@v4
+        with:
+          files: dbAndCsvBatch/build/reports/jacoco/test/jacocoTestReport.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./*/build/reports/jacoco/test/jacocoTestReport.xml
 
       - name: Archive Test Reports
         if: always()

@@ -60,6 +60,14 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
 // https://github.com/diffplug/spotless
 spotless {
     java {
