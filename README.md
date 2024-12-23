@@ -5,7 +5,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/KTC-YoheiMiyashita/SpringBoot3BatchStarter?style=social)](https://github.com/KTC-YoheiMiyashita/SpringBoot3BatchStarter/stargazers)
 [![Build](https://github.com/kinto-technologies/SpringBoot3BatchStarter/actions/workflows/build.yml/badge.svg)](https://github.com/kinto-technologies/SpringBoot3BatchStarter/actions/workflows/build.yml)
-![Codecov](https://img.shields.io/codecov/c/github/kinto-technologies/SpringBoot3BatchStarter?style=flat)
+[![codecov](https://codecov.io/gh/kinto-technologies/SpringBoot3BatchStarter/branch/main/graph/badge.svg)](https://codecov.io/gh/kinto-technologies/SpringBoot3BatchStarter)
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
