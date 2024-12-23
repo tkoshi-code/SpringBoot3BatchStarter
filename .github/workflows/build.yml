@@ -60,12 +60,15 @@ jobs:
           cd dbAndCsvBatch
           ../gradlew
 
+      - name: List coverage files
+        run: |
+          find . -name "jacocoTestReport.xml"
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: |
-            skeletonBatch/build/reports/jacoco/test/jacocoTestReport.xml
-            dbAndCsvBatch/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./skeletonBatch/build/reports/jacoco/test/jacocoTestReport.xml,./dbAndCsvBatch/build/reports/jacoco/test/jacocoTestReport.xml
 
       - name: Archive Test Reports
         if: always()
