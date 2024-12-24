@@ -117,6 +117,10 @@ compileJava {
     sourceSets.main.java.srcDirs("build/generated-src/jooq/main")
 }
 
+tasks.named('compileTestJava') {
+    dependsOn generateJooq
+}
+
 tasks.named('build') {
     dependsOn 'generateJooq'
 }
