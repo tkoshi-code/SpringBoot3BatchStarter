@@ -66,6 +66,17 @@ jacocoTestReport {
         csv.required = true
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
+
+    // Exclude packages or classes from the coverage report
+    afterEvaluate {
+        classDirectories.setFrom(
+                files(classDirectories.files.collect {
+                    fileTree(dir: it, exclude: [
+                            'com/example/batch/jooq/**'
+                    ])
+                })
+        )
+    }
 }
 
 // https://github.com/diffplug/spotless

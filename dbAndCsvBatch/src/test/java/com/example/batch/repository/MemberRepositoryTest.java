@@ -81,6 +81,32 @@ class MemberRepositoryTest {
     assertTrue(selected.isEmpty(), "Expected no records after deletion.");
   }
 
+  @Test
+  void testBulkInsert() {
+    // Prepare test data
+    List<MemberRecord> members =
+        List.of(
+            createMemberRecord("Test1", "test1@example.com", "1234567890", "Address 1", (byte) 100),
+            createMemberRecord(
+                "Test2", "test2@example.com", "0987654321", "Address 2", (byte) 100));
+
+    // Execute bulkInsert
+    repository.bulkInsert(members);
+
+    // Verify inserted data
+    List<MemberRecord> selected =
+        repository.selectByTypeAndDeleteFlag(List.of((byte) 100), (byte) 0);
+    assertEquals(2, selected.size(), "Expected 2 records to be inserted.");
+
+    assertEquals("Test1", selected.get(0).getName(), "First record name mismatch.");
+    assertEquals("Test2", selected.get(1).getName(), "Second record name mismatch.");
+    assertEquals("test1@example.com", selected.get(0).getEmail(), "First record email mismatch.");
+    assertEquals("test2@example.com", selected.get(1).getEmail(), "Second record email mismatch.");
+
+    // Clean up inserted records
+    selected.forEach(record -> repository.delete(record.getId()));
+  }
+
   private void cleanupRecordsByType(byte type) {
     List<MemberRecord> existingRecords =
         repository.selectByTypeAndDeleteFlag(List.of(type), (byte) 0);
