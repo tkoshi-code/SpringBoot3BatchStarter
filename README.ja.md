@@ -8,8 +8,6 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Spring Boot 3 と Spring Batch 5 を使用した、すぐに使えるバッチ処理フレームワークです。DB-CSVデータ連携やスケルトンバッチなど、実用的なサンプルを提供します。
-
 🇬🇧 英語版のREADMEは[こちら](README.md)
 
 ## 📋 前提条件
