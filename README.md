@@ -21,41 +21,147 @@
 
 ## 🔍 Overview
 
-This comprehensive starter kit is designed specifically for **Spring Boot 3** and **Spring Batch 5**, offering a production-ready foundation for enterprise batch processing applications. It incorporates industry best practices and leverages the latest Spring framework features to accelerate your batch development process.
+This comprehensive starter kit is designed specifically for Spring Boot 3 and Spring Batch 5, providing a production-ready foundation for enterprise batch processing applications. It offers two main components:
 
-## ⭐ Core Features
+## Skeleton Batch
+A minimal, ready-to-use batch application where you can:
+
+- Start development immediately by adding your business logic
+- Focus on implementation without complex configuration
+- Run in any environment with H2 in-memory database
+
+## DB and CSV Batch
+A practical example implementing common batch operations:
+
+- Export data from database to CSV with customizable queries
+- Import CSV data to database with efficient bulk operations
+- Demonstrate multi-database configuration best practices
+
+Both components are built with industry best practices and utilize the latest Spring framework features to accelerate your batch development process.
+
+## 🚀 Quick Start Guide
+
+### 1. Try Skeleton Batch
+```bash
+# Clone repository
+git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
+
+# Build and run skeleton batch
+cd skeletonBatch
+../gradlew
+java -jar build/libs/skeletonBatch-*.jar
+```
+
+### 2. Try DB and CSV Batch
+
+```bash
+# Start MySQL container
+cd ..
+docker compose up -d
+
+# Build and run
+cd dbAndCsvBatch
+../gradlew
+
+# Run DB to CSV export
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
+
+# Run CSV to DB import
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+```
+
+## 📁 Project Structure
+```text
+.
+├── gradlew                # Gradle wrapper
+├── settings.gradle
+├── compose.yaml          # Docker Compose configuration
+├── init-scripts          # Database initialization
+│   ├── 1-create-table.sql
+│   └── 2-insert-data.sql
+├── dbAndCsvBatch         # DB-CSV batch project
+│   ├── README.md
+│   ├── build.gradle
+│   └── src/
+└── skeletonBatch        # Skeleton batch project
+    ├── README.md
+    ├── build.gradle
+    └── src/
+```
+
+## 💡 Core Features
+
 ### 🏗️ Foundation Components
+- **Production-Ready Batch Framework**
+- Pre-configured skeleton structure
+- Ready for immediate development
+- H2 in-memory database for simple setup
 
-- **Production-Ready Batch Framework**: Pre-configured skeleton structure for rapid development.
-- **Database Operations**:
-  - Efficient DB-to-CSV export with dynamic query support
-  - High-performance CSV-to-DB import with bulk operations
-- **Enterprise-Grade Architecture**: Built with scalability and maintainability in mind
+### 🔄 Data Operations
+- **DB to CSV Export**
+- Dynamic query support
+- Configurable data extraction
+- **CSV to DB Import**
+- Bulk insert operations
+- High-performance data loading
 
-## 🛠️  Technical Capabilities
-- **Advanced Spring Integration**
-  - Robust Spring Batch job and step management
-  - Type-safe SQL queries with JOOQ ORM
-  - Seamless CSV processing with OpenCSV
-- **Dual Database Configuration**
-  - H2 In-Memory Database for batch metadata
-  - MySQL for business data processing
+### 🛠️ Technical Stack
+- **Spring Integration**
+- Spring Batch job/step management
+- Type-safe SQL with jOOQ
+- CSV processing with OpenCSV
+- **Dual Database Setup**
+- H2 for batch metadata
+- MySQL for business data
 
-## 💻 Development Experience
+### 💻 Development Tools
 - **Dynamic Configuration**
-  - Environment-specific profiles (local/server)
-  - Runtime-configurable job execution
-  - Flexible query customization through arguments
-- **Code Quality Tools**
-  - Automated formatting with Google Java Format (Spotless)
-  - Static analysis via Spotbugs
-  - Test coverage reporting with Jacoco
-  - Integrated CI pipeline
+- Environment profiles (local/server)
+- Runtime job configuration
+- Customizable queries
 
-## 🚢 DevOps Ready
-- **Containerization**: Docker support with ready-to-use MySQL configuration
-- **CI/CD Integration**: GitHub Actions workflows included
-- **Simplified Build Process**: Single-command builds generating production-ready JARs
+### 🔍 Quality Assurance
+- Google Java Format (Spotless)
+- Static analysis (SpotBugs)
+- Test coverage (Jacoco)
+- GitHub Actions CI pipeline
+
+## ❓ Troubleshooting
+
+### Entity Classes Not Found
+- **Cause**: jOOQ auto-generation not executed
+- **Solution**: Run `../gradlew generateJooq`
+- **Alternative**: Copy from `build/generated-src/jooq` to `src/main/java`
+
+### Database Connection Error
+- **Cause**: MySQL container not running
+- **Solution**: Run `docker compose up -d`
+- **Verify**: Check with `docker ps`
+
+### Multiple Jobs Error
+- **Symptom**: "Job name must be specified" error
+- **Cause**: Job name required when multiple jobs exist
+- **Solution**: Add `--spring.batch.job.name=DB_TO_CSV`
+
+## 🔄 Continuous Integration
+
+### GitHub Actions
+- Automated build and test
+- Code formatting check
+- Static analysis
+- Coverage measurement
+
+### Codecov
+- Coverage visualization
+- Automatic PR reports
+- Change tracking
+
+### Workflow
+1. Triggers on push/pull request
+2. Sets up MySQL container
+3. Configures JDK 21
+4. Runs Gradle build and tests
+5. Uploads coverage reports
 
 ## 📌 Version Information
 - Spring Boot: 3.4.1
@@ -65,96 +171,7 @@ This comprehensive starter kit is designed specifically for **Spring Boot 3** an
 - OpenCSV: 5.9
 - SpotBugs: 6.0.27
 
-### Plugins
-- spring-boot
-- spring-dependency-management
-- spotless
-- jooq
-- jacoco
-- spotbugs
-- project-report
-
----
-
-## 📁 Project Structure
-```text
-.
-├── gradlew
-├── settings.gradle
-├── compose.yaml
-├── init-scripts
-│   ├── 1-create-table.sql
-│   └── 2-insert-data.sql
-├── dbAndCsvBatch
-│   ├── README.md
-│   ├── build.gradle
-│   └── src
-│       ├── main
-│       └── test
-└── skeletonBatch
-    ├── README.md
-    ├── build.gradle
-    └── src
-        ├── main
-        └── test
-```
-
-## 🚀 Quick Start Guide
-
-### 1.	Clone the repository
-```bash
-git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
-```
-
-### 2. Build Skeleton Batch
-```bash
-cd skeletonBatch
-../gradlew
-```
-
-### 3. Execute Skeleton Batch
-```bash
-java -jar build/libs/skeletonBatch-*.jar
-```
-
-### 4. Initialize Database
-```bash
-docker compose down && docker compose build && docker compose up -d
-```
-
-### 5. Build Data Processing Jobs
-```bash
-cd ../dbAndCsvBatch
-../gradlew
-```
-
-### 6. Run Database Export
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
-```
-
-### 7. Run Database Import
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
-```
-
-> **Note**: Docker installation is required for database setup.
-
-## 🔧 Troubleshooting
-
-### Common Issues
-#### 1. Entity classes not found
-   - Cause: jOOQ auto-generation not executed
-   - Solution: Run `./gradlew build`
-
-#### 2. Database connection error
-   - Cause: MySQL container not running
-   - Solution: Run `docker compose up -d`
-
-## ♻️ Adaptability
-The starter kit is designed for easy customization. Simply modify the database configurations and CSV mappings to align with your specific requirements, and you're ready to start processing your business data.
-
 ## 📜 License
-Licensed under the **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**.  
+Licensed under the **[Apache License 2.0](https://www.apache.org/licenses/Apache-2.0)**.
 
 Copyright © 2024 KINTO Technologies Corporation

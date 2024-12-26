@@ -8,154 +8,157 @@
 ![Java 21](https://img.shields.io/badge/Java-21%2B-blue)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-CC2233.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## 🌐 言語サポート
+Spring Boot 3 と Spring Batch 5 を使用した、すぐに使えるバッチ処理フレームワークです。DB-CSVデータ連携やスケルトンバッチなど、実用的なサンプルを提供します。
 
 🇬🇧 英語版のREADMEは[こちら](README.md)
 
-## 📋 必要要件
-- JDK 21（Gradleのツールチェーンで自動的にダウンロード）
-- Docker Desktop
-- Gradle 8.5以上（gradlewを使用する場合は不要）
+## 📋 前提条件
+* JDK 21（Gradleのツールチェーンで自動ダウンロード）
+* Docker Desktop
+* Gradle 8.5+（gradlewを使用する場合は不要）
 
-> 💡 このプロジェクトはJDK 21を使用しますが、Gradleのツールチェーン機能により、ローカル環境にJDK 21がインストールされていなくても自動的に必要なJDKがダウンロードされます。
 
-## 🔍 概要
+> 💡 JDK 21が必要ですが、Gradleのツールチェーン機能により、ローカルにインストールされていなくても自動的にダウンロードされます。
 
-このリポジトリは**Spring Boot 3**と**Spring Batch 5**に特化した、エンタープライズ向けバッチ処理アプリケーションの基盤となるスターターキットです。業界のベストプラクティスを取り入れ、最新のSpringフレームワーク機能を活用してバッチ開発プロセスを加速します。
+## 1. スケルトンバッチを試す
+```bash
+# リポジトリのクローン
+git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
 
-### ⭐ 主要機能
+# スケルトンバッチのビルドと実行
+cd skeletonBatch
+../gradlew
+java -jar build/libs/skeletonBatch-*.jar
+```
 
-#### 🏗️ 基本コンポーネント
-- **本番対応バッチフレームワーク**: 高速開発のための事前設定済み基本構造
-- **データベース操作**:
-  - 動的クエリ対応のDB-to-CSVエクスポート
-  - バルク処理によるハイパフォーマンスなCSV-to-DBインポート
-- **エンタープライズグレードのアーキテクチャ**: スケーラビリティとメンテナンス性を考慮した設計
- 
-### 🛠️ 技術的な特徴
-- **Springフレームワークの活用**
-  - 堅牢なSpring Batchのジョブとステップ管理
-  - JOOQ ORMによる型安全なSQLクエリ
-  - OpenCSVによるシームレスなCSV処理
-- **デュアルデータベース設定**
-  - バッチメタデータ用のH2インメモリデータベース
-  - ビジネスデータ処理用のMySQL
+## 2. DBとCSVのバッチを試す
 
-### 💻 開発環境の特徴
-- **動的設定**
-  - 環境別プロファイル（ローカル/サーバー）
-  - 実行時引数による実行するジョブの選択
-  - 実行時引数による柔軟なクエリカスタマイズ
-- **コード品質ツール**
-  - Google Java Format（Spotless）による自動フォーマット
-  - Spotbugsによる静的解析
-  - Jacocoによるテストカバレッジレポート
-  - パイプライン
+```bash
+# MySQLコンテナの起動
+cd ..
+docker compose up -d
 
-### 🚢 DevOps対応
-- コンテナ化: 使用準備完了のMySQL設定を含むDocker対応
-- CI/CD統合: GitHub Actionsワークフロー搭載
-- シンプルなビルドプロセス: 本番対応JARを生成するシングルコマンドビルド
+# ビルドと実行
+cd dbAndCsvBatch
+../gradlew
 
-## 📌 バージョン情報
-- Spring Boot: 3.4.1
-- Spring Dependency Management: 1.1.7
-- Spotless (Google Java Format): 6.22.0
-- jOOQ: 9.0
-- OpenCSV: 5.9
-- SpotBugs: 6.0.27
+# DB→CSV出力の実行
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
 
-### 使用プラグイン
-- spring-boot
-- spring-dependency-management
-- spotless
-- jooq
-- jacoco
-- spotbugs
-- project-report
+# CSV→DB登録の実行
+java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+```
 
 ---
 
 ## 📁 プロジェクト構造
 ```text
 .
-├── gradlew
+├── gradlew                # Gradleラッパー
 ├── settings.gradle
-├── compose.yaml
-├── init-scripts
+├── compose.yaml           # Docker Compose設定
+├── init-scripts           # DB初期化スクリプト
 │   ├── 1-create-table.sql
 │   └── 2-insert-data.sql
-├── dbAndCsvBatch
+├── dbAndCsvBatch          # DB-CSVバッチ
 │   ├── README.md
 │   ├── build.gradle
-│   └── src
-│       ├── main
-│       └── test
-└── skeletonBatch
+│   └── src/
+└── skeletonBatch          # スケルトンバッチ
     ├── README.md
     ├── build.gradle
-    └── src
-        ├── main
-        └── test
+    └── src/
 ```
 
-## 🚀 クイックスタートガイド
+## 💡 主な機能
 
-### 1.	リポジトリのクローン
-```bash
-git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
-```
+### 🏗️ 基盤機能
+- **本番稼働可能なバッチフレームワーク**：
+    - すぐに開発を始められる構成
+    - 必要最小限の設定で動作
+    - H2インメモリDBによる簡単セットアップ
 
-### 2. スケルトンバッチのビルド
-```bash
-cd skeletonBatch
-../gradlew
-```
+### 🔄 データ操作
+- **DB→CSV出力**：
+    - 動的クエリのサポート
+    - 柔軟なデータ抽出設定
+- **CSV→DB登録**：
+    - バルク操作による一括登録
+    - 高性能なデータローディング
 
-### 3. スケルトンバッチの実行
-```bash
-java -jar build/libs/skeletonBatch-*.jar
-```
+### 🛠️ 技術スタック
+- **Spring連携**：
+    - Spring Batchによるジョブ/ステップ管理
+    - jOOQによる型安全なSQL実行
+    - OpenCSVによるCSV処理
+- **デュアルデータベース設定**：
+    - バッチ管理用H2インメモリDB
+    - 業務データ用MySQL
 
-### 4. データベースの初期化
-```bash
-docker compose up -d
-```
+### 💻 開発者向け機能
+- **動的設定**：
+    - 環境別プロファイル（local/server）
+    - 実行時設定可能なジョブ実行
+    - クエリのカスタマイズ対応
 
-### 5. DB と CSV バッチジョブをビルドする
-```bash
-cd ../dbAndCsvBatch
-../gradlew
-```
+### 🔍 品質管理
+- Google Java Format（Spotless）
+- 静的解析（SpotBugs）
+- テストカバレッジ（Jacoco）
+- GitHub Actions CIパイプライン
 
-### 6. DB to CSV バッチを実行する
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
-```
+## 📌 バージョン情報
+* Spring Boot: 3.4.1
+* Spring Dependency Management: 1.1.7
+* Spotless (Google Java Format): 6.22.0
+* jOOQ: 9.0
+* OpenCSV: 5.9
+* SpotBugs: 6.0.27
 
-### 7. CSV to DB バッチを実行する
-```bash
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
-```
+## ❓ よくある問題と解決方法
 
-> **注意**: 	データベースセットアップにはDockerのインストールが必要です。
+### Entityクラスが見つからない
+- **原因**：jOOQの自動生成が未実行
+- **解決**：`../gradlew generateJooq` を実行
+- **または**：`build/generated-src/jooq` を `src/main/java` にコピー
 
-## 🔧 トラブルシューティング
-### よくある問題
+### データベース接続エラー
+- **原因**：MySQLコンテナが未起動
+- **解決**：`docker compose up -d` を実行
+- **確認**：`docker ps` でコンテナの状態を確認
 
-#### 1. Entityクラスが見つからない
-   - 原因: jOOQによる自動生成が未実行
-   - 解決: ./gradlew buildを実行
+### 複数ジョブ存在エラー
+- **症状**：「Job name must be specified」エラー
+- **原因**：実行するジョブ名の指定が必要
+- **解決**：`--spring.batch.job.name=DB_TO_CSV` を指定
 
-#### 2. データベース接続エラー
-   - 原因: MySQLコンテナが未起動
-   - 解決: docker compose up -dを実行
+## 🔄 継続的インテグレーション
 
-## ♻️ カスタマイズ性
-このスターターキットは簡単なカスタマイズを想定して設計されています。データベース設定とCSVマッピングを特定の要件に合わせて変更するだけで、すぐにビジネスデータの処理を開始できます。
+このプロジェクトでは以下のCI/CDツールを活用しています：
 
-## 📜 ライセンス
+### GitHub Actions
+- 自動ビルドとテスト
+- コードフォーマットチェック（Google Java Format）
+- 静的解析（SpotBugs）
+- テストカバレッジ計測（Jacoco）
 
-[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)でライセンスされています
+### Codecov
+- テストカバレッジの可視化
+- プルリクエスト時のカバレッジレポート自動生成
+- カバレッジ変更の追跡
 
+### MySQL CI環境
+- GitHub Actionsでの自動セットアップ
+- テスト用データベースの構築
+- jOOQによるエンティティ自動生成の検証
+
+### ワークフロー
+1. プッシュまたはプルリクエスト時に自動実行
+2. MySQLコンテナのセットアップ
+3. JDK 21環境の構築
+4. Gradleによるビルドとテスト
+5. カバレッジレポートの生成とアップロード
+
+## 📄 ライセンス
+Apache License 2.0  
 Copyright © 2024 KINTO Technologies Corporation
