@@ -17,7 +17,6 @@ Spring Boot 3 と Spring Batch 5 を使用した、すぐに使えるバッチ�
 * Docker Desktop
 * Gradle 8.5+（gradlewを使用する場合は不要）
 
-
 > 💡 JDK 21が必要ですが、Gradleのツールチェーン機能により、ローカルにインストールされていなくても自動的にダウンロードされます。
 
 ## 🚀 クイックスタート
@@ -27,28 +26,21 @@ Spring Boot 3 と Spring Batch 5 を使用した、すぐに使えるバッチ�
 # リポジトリのクローン
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
 
-# スケルトンバッチのビルドと実行
-cd skeletonBatch
-../gradlew
-java -jar build/libs/skeletonBatch-*.jar
+# スケルトンバッチの実行
+./gradlew :skeletonBatch:bootRun
 ```
 
 ### 2️⃣ DBとCSVのバッチを試す
 
 ```bash
-# MySQLコンテナの起動
-cd ..
+# MySQL 起動
 docker compose up -d
 
-# ビルドと実行
-cd dbAndCsvBatch
-../gradlew
+# DB to CSV 実行
+./gradlew :dbAndCsvBatch:bootRun --args="--spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local"
 
-# DB→CSV出力の実行
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
-
-# CSV→DB登録の実行
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+# CSV to DB 実行
+./gradlew :dbAndCsvBatch:bootRun --args="--spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local"
 ```
 
 ---

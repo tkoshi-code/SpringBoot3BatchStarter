@@ -46,27 +46,20 @@ Both components are built with industry best practices and utilize the latest Sp
 # Clone repository
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
 
-# Build and run skeleton batch
-cd skeletonBatch
-../gradlew
-java -jar build/libs/skeletonBatch-*.jar
+# Build and Run
+./gradlew :skeletonBatch:bootRun
 ```
 
 ### 2️⃣ Try DB and CSV Batch
 ```bash
 # Start MySQL container
-cd ..
 docker compose up -d
 
-# Build and run
-cd dbAndCsvBatch
-../gradlew
-
 # Run DB to CSV export
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local
+./gradlew :dbAndCsvBatch:bootRun --args="--spring.batch.job.name=DB_TO_CSV --spring.profiles.active=local"
 
 # Run CSV to DB import
-java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local
+./gradlew :dbAndCsvBatch:bootRun --args="--spring.batch.job.name=CSV_TO_DB --spring.profiles.active=local"
 ```
 
 ## 📁 Project Structure
