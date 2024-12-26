@@ -20,7 +20,9 @@ Spring Boot 3 と Spring Batch 5 を使用した、すぐに使えるバッチ�
 
 > 💡 JDK 21が必要ですが、Gradleのツールチェーン機能により、ローカルにインストールされていなくても自動的にダウンロードされます。
 
-## 1. スケルトンバッチを試す
+## 🚀 クイックスタート
+
+### 1️⃣ スケルトンバッチを試す
 ```bash
 # リポジトリのクローン
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
@@ -31,7 +33,7 @@ cd skeletonBatch
 java -jar build/libs/skeletonBatch-*.jar
 ```
 
-## 2. DBとCSVのバッチを試す
+### 2️⃣ DBとCSVのバッチを試す
 
 ```bash
 # MySQLコンテナの起動

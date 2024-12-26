@@ -23,14 +23,14 @@
 
 This comprehensive starter kit is designed specifically for Spring Boot 3 and Spring Batch 5, providing a production-ready foundation for enterprise batch processing applications. It offers two main components:
 
-## Skeleton Batch
+### Skeleton Batch
 A minimal, ready-to-use batch application where you can:
 
 - Start development immediately by adding your business logic
 - Focus on implementation without complex configuration
 - Run in any environment with H2 in-memory database
 
-## DB and CSV Batch
+### DB and CSV Batch
 A practical example implementing common batch operations:
 
 - Export data from database to CSV with customizable queries
@@ -41,7 +41,7 @@ Both components are built with industry best practices and utilize the latest Sp
 
 ## 🚀 Quick Start Guide
 
-### 1. Try Skeleton Batch
+### 1️⃣ Try Skeleton Batch
 ```bash
 # Clone repository
 git clone https://github.com/kinto-technologies/SpringBoot3BatchStarter.git
@@ -52,8 +52,7 @@ cd skeletonBatch
 java -jar build/libs/skeletonBatch-*.jar
 ```
 
-### 2. Try DB and CSV Batch
-
+### 2️⃣ Try DB and CSV Batch
 ```bash
 # Start MySQL container
 cd ..
@@ -75,15 +74,15 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 .
 ├── gradlew                # Gradle wrapper
 ├── settings.gradle
-├── compose.yaml          # Docker Compose configuration
-├── init-scripts          # Database initialization
+├── compose.yaml           # Docker Compose configuration
+├── init-scripts           # Database initialization
 │   ├── 1-create-table.sql
 │   └── 2-insert-data.sql
-├── dbAndCsvBatch         # DB-CSV batch project
+├── dbAndCsvBatch          # DB-CSV batch project
 │   ├── README.md
 │   ├── build.gradle
 │   └── src/
-└── skeletonBatch        # Skeleton batch project
+└── skeletonBatch          # Skeleton batch project
     ├── README.md
     ├── build.gradle
     └── src/
@@ -92,39 +91,47 @@ java -jar build/libs/dbAndCsvBatch-*.jar --spring.batch.job.name=CSV_TO_DB --spr
 ## 💡 Core Features
 
 ### 🏗️ Foundation Components
-- **Production-Ready Batch Framework**
-- Pre-configured skeleton structure
-- Ready for immediate development
-- H2 in-memory database for simple setup
+- **Production-Ready Batch Framework**:
+    - Pre-configured skeleton structure
+    - Ready for immediate development
+    - H2 in-memory database for simple setup
 
 ### 🔄 Data Operations
-- **DB to CSV Export**
-- Dynamic query support
-- Configurable data extraction
-- **CSV to DB Import**
-- Bulk insert operations
-- High-performance data loading
+- **DB to CSV Export**:
+    - Dynamic query support
+    - Configurable data extraction
+- **CSV to DB Import**:
+    - Bulk insert operations
+    - High-performance data loading
 
 ### 🛠️ Technical Stack
-- **Spring Integration**
-- Spring Batch job/step management
-- Type-safe SQL with jOOQ
-- CSV processing with OpenCSV
-- **Dual Database Setup**
-- H2 for batch metadata
-- MySQL for business data
+- **Spring Integration**:
+    - Spring Batch job/step management
+    - Type-safe SQL with jOOQ
+    - CSV processing with OpenCSV
+- **Dual Database Setup**:
+    - H2 for batch metadata
+    - MySQL for business data
 
 ### 💻 Development Tools
-- **Dynamic Configuration**
-- Environment profiles (local/server)
-- Runtime job configuration
-- Customizable queries
+- **Dynamic Configuration**:
+    - Environment profiles (local/server)
+    - Runtime job configuration
+    - Customizable queries
+- **Development Support**:
+    - Hot reload support
+    - Debug configuration
+    - IDE integration
 
 ### 🔍 Quality Assurance
-- Google Java Format (Spotless)
-- Static analysis (SpotBugs)
-- Test coverage (Jacoco)
-- GitHub Actions CI pipeline
+- **Code Quality**:
+    - Google Java Format (Spotless)
+    - Static analysis (SpotBugs)
+    - Test coverage (Jacoco)
+- **CI Pipeline**:
+    - GitHub Actions integration
+    - Automated testing
+    - Quality gates
 
 ## ❓ Troubleshooting
 
