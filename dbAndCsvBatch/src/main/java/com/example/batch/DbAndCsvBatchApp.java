@@ -19,12 +19,11 @@ public class DbAndCsvBatchApp {
   /** Log startup arguments */
   private static void logBatchStartupDetails() {
     String commandProp = System.getProperty("sun.java.command");
-    log.info(
-        "##### KEY:\"sun.java.command\", VALUE:\"{}\"", System.getProperty("sun.java.command"));
-    String jobName = StringUtils.substringAfterLast(commandProp, "--spring.batch.job.name=");
-    jobName = StringUtils.substringBefore(jobName, " ");
-    String profile = StringUtils.substringAfterLast(commandProp, "--spring.profiles.active=");
-    profile = StringUtils.substringBefore(profile, " ");
+    log.info("##### KEY:\"sun.java.command\", VALUE:\"{}\"", commandProp);
+    String jobName = StringUtils.substringBetween(commandProp,
+            "--spring.batch.job.name=", " ");
+    String profile = StringUtils.substringAfter(commandProp,
+            "--spring.profiles.active=");
     log.info("##### Spring Batch ##### - Job: {}, Profile: {}", jobName, profile);
   }
 }
