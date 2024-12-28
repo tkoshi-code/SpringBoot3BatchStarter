@@ -172,6 +172,6 @@ docker compose up -d
 - SpotBugs: 6.0.27
 
 ## 📜 License
-Licensed under the **[Apache License 2.0](https://www.apache.org/licenses/Apache-2.0)**.
+Licensed under the **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**.
 
 Copyright © 2024 KINTO Technologies Corporation

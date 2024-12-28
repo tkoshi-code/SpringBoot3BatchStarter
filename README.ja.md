@@ -172,5 +172,6 @@ docker compose up -d
 5. カバレッジレポートの生成とアップロード
 
 ## 📄 ライセンス
-Apache License 2.0  
+**[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)**
+
 Copyright © 2024 KINTO Technologies Corporation
