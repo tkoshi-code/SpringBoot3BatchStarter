@@ -1,0 +1,6 @@
+spring:
+  main:
+    web-application-type: none
+  batch:
+    job:
+      enabled: false  # 自動的なジョブ実行を無効化
