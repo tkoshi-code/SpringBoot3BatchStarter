@@ -1,37 +1,27 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Compiled class files
+*.class
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Build directories
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-.DS_Store
+bin/
 .gradle/
+
+# IDE files
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Logs
 *.log
-*.csv
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Spring Boot
+application-*.yml
+!application.yml
+!application-local.yml
+!application-server.yml

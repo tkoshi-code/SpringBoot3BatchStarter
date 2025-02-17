@@ -17,26 +17,27 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class BatchConfig {
 
-    @Bean
-    public Job chunkJob(JobRepository jobRepository, Step chunkStep) {
-        return new JobBuilder("chunkJob", jobRepository)
-                .start(chunkStep)
-                .build();
-    }
+  @Bean
+  public Job chunkJob(JobRepository jobRepository, Step chunkStep) {
+    return new JobBuilder("chunkJob", jobRepository).start(chunkStep).build();
+  }
 
-    @Bean
-    public Step chunkStep(JobRepository jobRepository, PlatformTransactionManager transactionManager, ChunkReader reader) {
-        return new StepBuilder("chunkStep", jobRepository)
-                .<String, String>chunk(10, transactionManager)
-                .reader(reader)
-                .processor(new ChunkProcessor())
-                .writer(new ChunkWriter())
-                .build();
-    }
+  @Bean
+  public Step chunkStep(
+      JobRepository jobRepository,
+      PlatformTransactionManager transactionManager,
+      ChunkReader reader) {
+    return new StepBuilder("chunkStep", jobRepository)
+        .<String, String>chunk(10, transactionManager)
+        .reader(reader)
+        .processor(new ChunkProcessor())
+        .writer(new ChunkWriter())
+        .build();
+  }
 
-    @Bean
-    @StepScope
-    public ChunkReader chunkReader(@Value("#{jobParameters['names']}") String names) {
-        return new ChunkReader(names);
-    }
+  @Bean
+  @StepScope
+  public ChunkReader chunkReader(@Value("#{jobParameters['names']}") String names) {
+    return new ChunkReader(names);
+  }
 }

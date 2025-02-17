@@ -12,30 +12,29 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ChunkBatchApplication implements CommandLineRunner {
 
-    @Autowired
-    private JobLauncher jobLauncher;
+  @Autowired private JobLauncher jobLauncher;
 
-    @Autowired
-    private Job chunkJob;
+  @Autowired private Job chunkJob;
 
-    public static void main(String[] args) {
-        SpringApplication.run(ChunkBatchApplication.class, args);
+  public static void main(String[] args) {
+    SpringApplication.run(ChunkBatchApplication.class, args);
+  }
+
+  @Override
+  public void run(String... args) throws Exception {
+    String names = "World";
+    for (String arg : args) {
+      if (arg.startsWith("--names=")) {
+        names = arg.substring("--names=".length());
+        break;
+      }
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        String names = "World";
-        for (String arg : args) {
-            if (arg.startsWith("--names=")) {
-                names = arg.substring("--names=".length());
-                break;
-            }
-        }
-        
-        JobParameters params = new JobParametersBuilder()
-                .addString("names", names)
-                .addLong("time", System.currentTimeMillis())
-                .toJobParameters();
-        jobLauncher.run(chunkJob, params);
-    }
+    JobParameters params =
+        new JobParametersBuilder()
+            .addString("names", names)
+            .addLong("time", System.currentTimeMillis())
+            .toJobParameters();
+    jobLauncher.run(chunkJob, params);
+  }
 }
