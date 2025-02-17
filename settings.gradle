@@ -1,6 +1,5 @@
 rootProject.name = "SpringBoot3BatchStarter"
 
 include "skeletonBatch"
-include "dbAndCsvBatch"
 include "taskletBatch"
 include "chunkBatch"

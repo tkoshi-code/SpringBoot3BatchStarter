@@ -1,6 +1,0 @@
-description = 'dbAndCsvBatch'
-
-bootJar {
-    archiveBaseName = 'dbAndCsvBatch'
-    archiveVersion = '0.0.1'
-}
