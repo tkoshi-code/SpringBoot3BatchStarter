@@ -12,30 +12,29 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TaskletBatchApplication implements CommandLineRunner {
 
-    @Autowired
-    private JobLauncher jobLauncher;
+  @Autowired private JobLauncher jobLauncher;
 
-    @Autowired
-    private Job helloJob;
+  @Autowired private Job helloJob;
 
-    public static void main(String[] args) {
-        SpringApplication.run(TaskletBatchApplication.class, args);
+  public static void main(String[] args) {
+    SpringApplication.run(TaskletBatchApplication.class, args);
+  }
+
+  @Override
+  public void run(String... args) throws Exception {
+    String name = "World";
+    for (String arg : args) {
+      if (arg.startsWith("--name=")) {
+        name = arg.substring("--name=".length());
+        break;
+      }
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        String name = "World";
-        for (String arg : args) {
-            if (arg.startsWith("--name=")) {
-                name = arg.substring("--name=".length());
-                break;
-            }
-        }
-        
-        JobParameters params = new JobParametersBuilder()
-                .addString("name", name)
-                .addLong("time", System.currentTimeMillis())
-                .toJobParameters();
-        jobLauncher.run(helloJob, params);
-    }
+    JobParameters params =
+        new JobParametersBuilder()
+            .addString("name", name)
+            .addLong("time", System.currentTimeMillis())
+            .toJobParameters();
+    jobLauncher.run(helloJob, params);
+  }
 }

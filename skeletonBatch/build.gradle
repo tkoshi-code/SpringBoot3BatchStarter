@@ -1,6 +1,0 @@
-description = 'skeletonBatch'
-
-bootJar {
-    archiveBaseName = 'skeletonBatch'
-    archiveVersion = '0.0.1'
-}

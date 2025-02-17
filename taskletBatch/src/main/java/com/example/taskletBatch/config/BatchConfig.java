@@ -13,22 +13,21 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class BatchConfig {
 
-    @Bean
-    public HelloTasklet helloTasklet() {
-        return new HelloTasklet();
-    }
+  @Bean
+  public HelloTasklet helloTasklet() {
+    return new HelloTasklet();
+  }
 
-    @Bean
-    public Job helloJob(JobRepository jobRepository, Step helloStep) {
-        return new JobBuilder("helloJob", jobRepository)
-                .start(helloStep)
-                .build();
-    }
+  @Bean
+  public Job helloJob(JobRepository jobRepository, Step helloStep) {
+    return new JobBuilder("helloJob", jobRepository).start(helloStep).build();
+  }
 
-    @Bean
-    public Step helloStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("helloStep", jobRepository)
-                .tasklet(helloTasklet(), transactionManager)
-                .build();
-    }
+  @Bean
+  public Step helloStep(
+      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    return new StepBuilder("helloStep", jobRepository)
+        .tasklet(helloTasklet(), transactionManager)
+        .build();
+  }
 }
